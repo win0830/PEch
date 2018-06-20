@@ -16,7 +16,7 @@
   <!-- header -->
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
     <ul class="navbar-nav mr-auto">
-    	<li><a class="navbar-brand" href="#">Logo</a></li>
+    	<li><a class="navbar-brand" href="#"><p class="mb-0" id="logo">PEch</p></a></li>
     </ul>
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -33,7 +33,7 @@
     </ul>
   </nav>
   <!-- main -->
-  <div class="container-fluid" style="margin-top:80px">
+  <div class="container-fluid" style="margin-top:120px">
   	<div class="offset-lg-2 col-lg-8">
       <!-- search_box -->
       <div class="search_box offset-lg-3">
@@ -51,12 +51,13 @@
     </div>
 
     <!-- threads -->
-    <table class="table table-hover mt-5">
+    <table class="table table-hover mt-5 text-center">
       <thead>
         <tr>
           <th>作成日</th>
           <th>スレッドタイトル</th>
           <th>作成者</th>
+          <th>レス数</th>
         </tr>
       </thead>
       <tbody>
@@ -64,11 +65,13 @@
           <td>8時10分</td>
           <td>大島優希野獣先輩説</td>
           <td>大島優希</td>
+          <td><span class="badge badge-primary badge-pill">19</span></td>
         </tr>
         <tr>
           <td>19時19分</td>
-          <td>ンアッー！</td>
+          <td>俺よりJava自信ニキのやつおる？</td>
           <td>前田龍也</td>
+          <td><span class="badge badge-primary badge-pill">81</span></td>
         </tr>
       </tbody>
     </table>
@@ -76,15 +79,30 @@
   </div>
 
 
-  <div class="create_threads_mask"></div>
+<div class="create_threads_mask"></div>
   <!-- create threads -->
-  
-        <div class="card border-dark offset-lg-2 col-lg-8 p-0 create_threads text-center">
-          <div class="card-header bg-dark text-white">
-            スレ作成
-          </div>
+    <div class="card border-dark offset-lg-3 col-lg-6 p-0 create_threads text-center">
+        <div class="card-header bg-dark text-white">
+          スレ作成
+        </div>
           <div class="card-body">
             <form action="#">
+
+              <div class="form-group">
+                <label>カテゴリ&emsp;：</label>&nbsp;
+                <select name="category">
+                  <option value="1">Java</option>
+                  <option value="2">C</option>
+                  <option value="3">Python</option>
+                </select>
+              </div>
+              <!-- keyword -->
+              <div class="form-group">
+                <label>新規カテゴリ：</label>&nbsp;
+                <input type="text"><button>追加</button>
+              </div>
+
+
               <div class="form-group">
                 <input type="text" class="form-control" id="" placeholder="スレッド名">
               </div>
@@ -95,7 +113,7 @@
             </form>
           </div>
         </div>
- 
+
 
 </body>
 </html>
