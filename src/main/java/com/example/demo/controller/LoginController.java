@@ -45,12 +45,27 @@ public class LoginController {
 	//ログイン処理してスレッド一覧ページへ
 	@RequestMapping(value="login")
 	public String login(ModelMap model, LoginForm form ,HttpServletRequest req) {
-		if(usersRepos.findByUserId(form.getUserId())!=null) {
-			if(usersRepos.findByUserId(form.getUserId()).getPassword()
+		if(usersRepos.findByUserId(form.getUserId())!=null) { //ユーザーＩＤ（ローマ字）の一致するユーザーの検索
+			if(usersRepos.findByUserId(form.getUserId()).getPassword()//一致したユーザーとパスワードが一致するかどうか
 					.equals(form.getPassword())) {
-				
+				sessionModel.setUserName(usersRepos.findByUserId(form.getUserId()).getUserName());//セッションにユーザーネーム（日本語）セット
+				model.addAttribute("username",usersRepos.findByUserId(form.getUserId()).getUserName());//モデルにユーザーネームのセット
+				return "PEch/archive";
 			}
 		}
-		return "PEch/archive";
+		//ログイン失敗時：失敗フラグをたててユーザーＩＤだけセットしてログイン画面へ
+		model.addAttribute("flag", true);
+		model.addAttribute("userId", form.getUserId());
+		return "PEch/login";
 	}
+	
+	//ログアウト処理してログインページへ
+	@RequestMapping("logout")
+	public String logout() {
+		sessionModel.setUserName(null);
+		return "PEch/login";
+	}
+	
+	
+	
 }
