@@ -12,7 +12,7 @@ public class ThreadController {
 
 	@RequestMapping("/tread")
 	public String getTread() {
-		return "tread";
+		return "PEch/tread";
 	}
 	
 	@RequestMapping(value = "sendMessage", 

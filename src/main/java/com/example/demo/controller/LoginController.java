@@ -14,7 +14,7 @@ public class LoginController {
 	
 	@RequestMapping("/")
 	public String getLogin() {
-		return "login";
+		return "PEch/login";
 	}
 	
 	
