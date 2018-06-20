@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.example.demo.model.ThreadsForm;
 import com.google.gson.Gson;
 
+import com.example.demo.model.CreateThreadForm;
+
 @Controller
 public class ArchiveController {
 
@@ -19,6 +21,7 @@ public class ArchiveController {
 		return "PEch/archive";
 	}
 	
+
 	@RequestMapping(value = "", 
 			consumes = MediaType.APPLICATION_JSON_VALUE, 
 			method = RequestMethod.GET)
@@ -26,5 +29,11 @@ public class ArchiveController {
 	public String getTreads(@RequestBody ThreadsForm fomr) {
 		
 		return new Gson().toJson("");
+	}
+
+	@RequestMapping("/createThread")
+	public String createThread(CreateThreadForm createThreadForm) {
+		
+		return "PEch/archive";
 	}
 }
