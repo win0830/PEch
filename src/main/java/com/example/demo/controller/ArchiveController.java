@@ -8,6 +8,6 @@ public class ArchiveController {
 
 	@RequestMapping("/archive")
 	public String getArchive() {
-		return "archive";
+		return "PEch/archive";
 	}
 }
