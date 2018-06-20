@@ -16,8 +16,5 @@ public class ThreadService {
 	public void insertThread(CreateThreadForm createThreadForm ) {
 		Threads thread = new Threads();
 		
-		thread.set
-		
-		threadsRepos.save(thread);
 	}
 }
