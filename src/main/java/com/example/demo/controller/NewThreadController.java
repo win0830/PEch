@@ -10,4 +10,5 @@ public class NewThreadController {
 	public String getNewThread() {
 		return "newThread";
 	}
+	
 }
