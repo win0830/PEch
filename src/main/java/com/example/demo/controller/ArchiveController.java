@@ -1,8 +1,10 @@
 package com.example.demo.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,6 +17,8 @@ import com.example.demo.model.ThreadsRepos;
 import com.google.gson.Gson;
 
 import com.example.demo.model.CreateThreadForm;
+import com.example.demo.model.Reses;
+import com.example.demo.model.ResesRepos;
 import com.example.demo.model.Threads;
 
 @Controller
@@ -22,14 +26,16 @@ public class ArchiveController {
 	
 	@Autowired
 	private ThreadsRepos threadsRepos;
+	@Autowired
+	private ResesRepos resesRepos;
 	
-	// ページ表示
+	// show page
 	@RequestMapping("/archive")
 	public String getArchive() {
 		return "PEch/archive";
 	}
 	
-	// スレッド一覧表示
+	// show thread all 
 	@RequestMapping(value = "getThreads", 
 			consumes = MediaType.APPLICATION_JSON_VALUE, 
 			method = RequestMethod.GET)
@@ -37,8 +43,17 @@ public class ArchiveController {
 	public String getTreads(@RequestBody ThreadsForm form) {
 		int page = form.getPage();
 		int threadsCount = form.getThreadsCount();
-		//List<Threads> threads = threadsRepos.findByAllOrderByPostTimeDesc();
-		return new Gson().toJson("");
+		List<Reses> reses = resesRepos.findAll(new Sort(Sort.Direction.DESC,"postTime"));
+		List<Threads> threads = new ArrayList<>();
+		threads.add(threadsRepos.findById(reses.get(0).getThreads().getThreadId()).get());
+		for(int i = 0; i < reses.size(); i++) {
+			if(threads.indexOf(reses.get(i).getThreads()) == -1) {
+				threads.add(threadsRepos.findById(reses.get(i).getThreads().getThreadId()).get());
+				threadsCount--;
+			}
+			if(threadsCount == 0) break;
+		}
+		return new Gson().toJson(threads);
 	}
 
 	@RequestMapping("/createThread")
