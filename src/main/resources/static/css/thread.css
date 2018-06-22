@@ -14,3 +14,7 @@
 	background-color: black;
 	opacity: 0.60;
 }
+
+label {
+vertical-align: top;
+}
