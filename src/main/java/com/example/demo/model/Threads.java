@@ -31,10 +31,6 @@ public class Threads {
 	@NotNull
 	@ManyToOne
 	private Users users;
-
-	@NotNull
-	@OneToMany
-	private List<Reses> reses;
 	
 	public Integer getThreadId() {
 		return threadId;
@@ -74,13 +70,5 @@ public class Threads {
 
 	public void setUsers(Users users) {
 		this.users = users;
-	}
-
-	public List<Reses> getReses() {
-		return reses;
-	}
-
-	public void setReses(List<Reses> reses) {
-		this.reses = reses;
 	}
 }

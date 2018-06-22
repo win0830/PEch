@@ -24,14 +24,6 @@ public class Users {
 	
 	@NotNull
 	private String userName;
-	
-	@NotNull
-	@OneToMany
-	private List<Reses> reses;
-	
-	@NotNull
-	@OneToMany
-	private List<Threads> threads;
 
 	public Integer getUserNo() {
 		return userNo;
@@ -63,21 +55,5 @@ public class Users {
 
 	public void setUserName(String userName) {
 		this.userName = userName;
-	}
-
-	public List<Reses> getReses() {
-		return reses;
-	}
-
-	public void setReses(List<Reses> reses) {
-		this.reses = reses;
-	}
-
-	public List<Threads> getThreads() {
-		return threads;
-	}
-
-	public void setThreads(List<Threads> threads) {
-		this.threads = threads;
 	}
 }

@@ -18,10 +18,6 @@ public class Categories {
 	
 	@NotNull
 	private String categoryName;
-	
-	@NotNull
-	@OneToMany
-	private List<Threads> threads;
 
 	public Integer getCategoryId() {
 		return categoryId;
@@ -37,13 +33,5 @@ public class Categories {
 
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
-	}
-
-	public List<Threads> getThreads() {
-		return threads;
-	}
-
-	public void setThreads(List<Threads> threads) {
-		this.threads = threads;
 	}
 }
