@@ -15,7 +15,8 @@ $(function(){
 	var params = {
 	        url: "/getThreads",
 	        dataType: "json",
-	        type: "get"
+	        type: "get",
+	        contentType: "application/json"
 	    };
 
 	$.ajax(params)

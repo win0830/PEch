@@ -40,18 +40,15 @@ public class ArchiveController {
 			consumes = MediaType.APPLICATION_JSON_VALUE, 
 			method = RequestMethod.GET)
 	@ResponseBody
-	public String getTreads(@RequestBody ThreadsForm form) {
-		int page = form.getPage();
-		int threadsCount = form.getThreadsCount();
+	public String getTreads() {// @RequestBody ThreadsForm form
+//		int threadsCount = form.getThreadsCount();
 		List<Reses> reses = resesRepos.findAll(new Sort(Sort.Direction.DESC,"postTime"));
 		List<Threads> threads = new ArrayList<>();
 		threads.add(threadsRepos.findById(reses.get(0).getThreads().getThreadId()).get());
 		for(int i = 0; i < reses.size(); i++) {
 			if(threads.indexOf(reses.get(i).getThreads()) == -1) {
-				threads.add(threadsRepos.findById(reses.get(i).getThreads().getThreadId()).get());
-				threadsCount--;
+				threads.add(threadsRepos.findById(reses.get(i).getThreads().getThreadId()).get());	
 			}
-			if(threadsCount == 0) break;
 		}
 		return new Gson().toJson(threads);
 	}

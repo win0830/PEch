@@ -32,7 +32,7 @@ public class LoginController {
 	//�g�b�v�y�[�W�i���O�C���y�[�W�j�֔�΂�
 	@RequestMapping("/")
 	public String getLogin() {
-		service.create();
+		//service.create();
 		return "PEch/login";
 	}
 	

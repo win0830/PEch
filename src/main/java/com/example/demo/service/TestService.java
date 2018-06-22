@@ -138,7 +138,7 @@ public class TestService {
 		
 		res = new Reses();
 		res.setIsOpenName(0);
-		res.setRes("初レス");
+		res.setRes("キングかなーやっぱりｗｗ自分は思わないんだけど周りにキングってよく言われるｗｗｗこないだＫＭＫＮＧに課題出された時も気がついたら意識無くてプログラムが完成してたしなｗｗｗちなみに彼女は神絵師(聞いてないｗ)");
 		res.setUsers(usersRepos.findById(3).get());
 		res.setThreads(threadsRepos.findById(1).get());
 		resesRepos.save(res);
