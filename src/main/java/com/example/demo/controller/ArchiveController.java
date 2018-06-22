@@ -37,8 +37,8 @@ public class ArchiveController {
 	public String getTreads(@RequestBody ThreadsForm form) {
 		int page = form.getPage();
 		int threadsCount = form.getThreadsCount();
-		List<Threads> threads = threadsRepos.findByAllOrderByPostTimeDesc();
-		return new Gson().toJson(threads);
+		//List<Threads> threads = threadsRepos.findByAllOrderByPostTimeDesc();
+		return new Gson().toJson("");
 	}
 
 	@RequestMapping("/createThread")
