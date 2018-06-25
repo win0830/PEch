@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -66,7 +67,7 @@ public class LoginController {
 	
 	//���O�A�E�g�������ă��O�C���y�[�W��
 	@RequestMapping("logout")
-	public String logout() {
+	public String logout(Model m) {
 		sessionModel.setUserName(null);
 		return "PEch/login";
 	}

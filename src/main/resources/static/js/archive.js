@@ -13,7 +13,7 @@ $(function(){
 	});
 	
 	//ログアウト
-	$('#logout').on('click',function(){
+	/*$('#logout').on('click',function(){
 		const toast = swal.mixin({
 			  toast: true,
 			  position: 'top-end',
@@ -25,7 +25,7 @@ $(function(){
 			  type: 'success',
 			  title: 'Signed in successfully'
 			})
-	});
+	});*/
 	
 	
 	//DB内データの受け取り
