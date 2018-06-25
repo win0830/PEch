@@ -1,4 +1,5 @@
-var params;
+var thParam;
+var cateParam;
 
 $(function(){
 	
@@ -33,15 +34,15 @@ $(function(){
 	* main
 	*/
 	
-	//DB内データの受け取り
-	params = {
+	//DB内データの受け取り(スレッド表)
+	thParam = {
 	        url: "/getThreads",
 	        dataType: "json",
 	        type: "get",
 	        contentType: "application/json"
 	    };
 
-	$.ajax(params)
+	$.ajax(thParam)
 	.done(function(data,status,jqXHR){
 	    console.log(data);
 	  //テーブルに受け取った値を表示
@@ -58,9 +59,7 @@ $(function(){
 	.fail(function(jqXHR,status,errThrown){
 	    console.error("Error:" + status);
 	});
-	
-	
-	
+
 	
 	
 	
