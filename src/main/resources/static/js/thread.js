@@ -67,7 +67,7 @@ function send_message(){
 	  data: {
 	  	isOpenName : $('.form-check-input').prop('checked'),
 	  	res : $('#msg').val(),
-	  	threadId : null
+	  	//threadId : $('#thread_id').val()
 	  }
 	}
 
