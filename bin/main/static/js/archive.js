@@ -72,15 +72,13 @@ $(function(){
 	.done(function(data,status,jqXHR){
 	    console.log(data);
 	
-		$('select').append('<option value="null">選択しない</option>');
+		$('select').append('<option value="null">全て</option>');
 		
 		for(var i=0; i < data.length; i++){
 			$('select').append('<option value="'+ data[i].categoryId +'">'
 					+ data[i].categoryName  + '</option>');
 		}
 		
-		$('select').append('<option value="0">全て</option>');
-
 	})
 	.fail(function(jqXHR,status,errThrown){
 	    console.error("Error:" + status);
