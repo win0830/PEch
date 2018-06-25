@@ -45,6 +45,7 @@ public class ThreadController {
 			method = RequestMethod.GET)
 	@ResponseBody
 	public String getThreadInfo() {
+		
 		return new Gson().toJson("");
 	}
 	
