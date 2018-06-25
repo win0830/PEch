@@ -17,6 +17,7 @@ import com.example.demo.model.ThreadsForm;
 import com.example.demo.model.ThreadsRepos;
 import com.google.gson.Gson;
 import com.example.demo.SessionModel;
+import com.example.demo.model.UsersRepos;
 import com.example.demo.model.Categories;
 import com.example.demo.model.CategoriesRepos;
 import com.example.demo.model.CreateThreadForm;
@@ -35,6 +36,8 @@ public class ArchiveController {
 	private SessionModel sessionModel;
 	@Autowired
 	private CategoriesRepos categoriesRepos;
+	@Autowired
+	private UsersRepos usersRepos;
 	
 	// show page
 	@RequestMapping("/archive")
@@ -45,7 +48,7 @@ public class ArchiveController {
 	
 	@RequestMapping("/createThread")
 	public String createThread(CreateThreadForm createThreadForm) {
-		
+		Threads thread = new Threads();
 		return "PEch/archive";
 	}
 	
@@ -95,5 +98,14 @@ public class ArchiveController {
 		}
 		
 		return new Gson().toJson(threads);
+	}
+	
+	@RequestMapping(value = "getCategories", 
+			consumes = MediaType.APPLICATION_JSON_VALUE, 
+			method = RequestMethod.GET)
+	@ResponseBody
+	public String getCategories() {
+		List<Categories> categories = categoriesRepos.findAll();
+		return new Gson().toJson(categories);
 	}
 }
