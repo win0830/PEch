@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -64,7 +65,7 @@ public class ThreadController {
     @ResponseBody
 	public String getReses(@RequestBody ResesForm resesForm) {
 		List<Reses> reses = new ArrayList<Reses>();
-		for(Reses res : resesRepos.findAll()) {
+		for(Reses res : resesRepos.findAll(new Sort(Sort.Direction.ASC,"postTime"))) {
 			if(res.getThreads().getThreadId() == resesForm.getThreadId()) {
 				reses.add(res);
 			}
