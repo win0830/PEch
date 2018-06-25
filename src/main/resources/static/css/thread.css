@@ -16,5 +16,9 @@
 }
 
 label {
-vertical-align: top;
+	vertical-align: top;
+}
+
+#inputArea{
+	background-color: rgba(154, 154, 154, 0.8);
 }
