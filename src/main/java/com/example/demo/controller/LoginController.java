@@ -30,10 +30,10 @@ public class LoginController {
 	@Autowired
 	private TestService service;
 	
-	//�g�b�v�y�[�W�i���O�C���y�[�W�j�֔�΂�
+	//�ｿｽg�ｿｽb�ｿｽv�ｿｽy�ｿｽ[�ｿｽW�ｿｽi�ｿｽ�ｿｽ�ｿｽO�ｿｽC�ｿｽ�ｿｽ�ｿｽy�ｿｽ[�ｿｽW�ｿｽj�ｿｽﾖ費ｿｽﾎゑｿｽ
 	@RequestMapping("/")
 	public String getLogin() {
-		//service.create();
+//		service.create();
 		return "PEch/login";
 	}
 	
@@ -48,24 +48,24 @@ public class LoginController {
 	}
 	
 	
-	//���O�C���������ăX���b�h�ꗗ�y�[�W��
+	//�ｿｽ�ｿｽ�ｿｽO�ｿｽC�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽﾄス�ｿｽ�ｿｽ�ｿｽb�ｿｽh�ｿｽ齬暦ｿｽy�ｿｽ[�ｿｽW�ｿｽ�ｿｽ
 	@RequestMapping(value="login")
 	public String login(ModelMap model, LoginForm form ,HttpServletRequest req) {
-		if(usersRepos.findByUserId(form.getUserId())!=null) { //���[�U�[�h�c�i���[�}���j�̈�v���郆�[�U�[�̌���
-			if(usersRepos.findByUserId(form.getUserId()).getPassword()//��v�������[�U�[�ƃp�X���[�h����v���邩�ǂ���
+		if(usersRepos.findByUserId(form.getUserId())!=null) { //�ｿｽ�ｿｽ�ｿｽ[�ｿｽU�ｿｽ[�ｿｽh�ｿｽc�ｿｽi�ｿｽ�ｿｽ�ｿｽ[�ｿｽ}�ｿｽ�ｿｽ�ｿｽj�ｿｽﾌ茨ｿｽv�ｿｽ�ｿｽ�ｿｽ驛��ｿｽ[�ｿｽU�ｿｽ[�ｿｽﾌ鯉ｿｽ�ｿｽ�ｿｽ
+			if(usersRepos.findByUserId(form.getUserId()).getPassword()//�ｿｽ�ｿｽv�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ[�ｿｽU�ｿｽ[�ｿｽﾆパ�ｿｽX�ｿｽ�ｿｽ�ｿｽ[�ｿｽh�ｿｽ�ｿｽ�ｿｽ�ｿｽv�ｿｽ�ｿｽ�ｿｽ驍ｩ�ｿｽﾇゑｿｽ�ｿｽ�ｿｽ
 					.equals(form.getPassword())) {
-				sessionModel.setUserName(usersRepos.findByUserId(form.getUserId()).getUserName());//�Z�b�V�����Ƀ��[�U�[�l�[���i���{��j�Z�b�g
-				model.addAttribute("username",usersRepos.findByUserId(form.getUserId()).getUserName());//���f���Ƀ��[�U�[�l�[���̃Z�b�g
+				sessionModel.setUserName(usersRepos.findByUserId(form.getUserId()).getUserName());//�ｿｽZ�ｿｽb�ｿｽV�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽﾉ�ｿｽ�ｿｽ[�ｿｽU�ｿｽ[�ｿｽl�ｿｽ[�ｿｽ�ｿｽ�ｿｽi�ｿｽ�ｿｽ�ｿｽ{�ｿｽ�ｿｽj�ｿｽZ�ｿｽb�ｿｽg
+				model.addAttribute("username",usersRepos.findByUserId(form.getUserId()).getUserName());//�ｿｽ�ｿｽ�ｿｽf�ｿｽ�ｿｽ�ｿｽﾉ�ｿｽ�ｿｽ[�ｿｽU�ｿｽ[�ｿｽl�ｿｽ[�ｿｽ�ｿｽ�ｿｽﾌセ�ｿｽb�ｿｽg
 				return "PEch/archive";
 			}
 		}
-		//���O�C�����s���F���s�t���O�����Ăă��[�U�[�h�c�����Z�b�g���ă��O�C����ʂ�
+		//�ｿｽ�ｿｽ�ｿｽO�ｿｽC�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽs�ｿｽ�ｿｽ�ｿｽF�ｿｽ�ｿｽ�ｿｽs�ｿｽt�ｿｽ�ｿｽ�ｿｽO�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽﾄて�ｿｽ�ｿｽ[�ｿｽU�ｿｽ[�ｿｽh�ｿｽc�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽZ�ｿｽb�ｿｽg�ｿｽ�ｿｽ�ｿｽﾄ�ｿｽ�ｿｽO�ｿｽC�ｿｽ�ｿｽ�ｿｽ�ｿｽﾊゑｿｽ
 		model.addAttribute("flag", true);
 		model.addAttribute("userId", form.getUserId());
 		return "PEch/login";
 	}
 	
-	//���O�A�E�g�������ă��O�C���y�[�W��
+	//�ｿｽ�ｿｽ�ｿｽO�ｿｽA�ｿｽE�ｿｽg�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽﾄ�ｿｽ�ｿｽO�ｿｽC�ｿｽ�ｿｽ�ｿｽy�ｿｽ[�ｿｽW�ｿｽ�ｿｽ
 	@RequestMapping("logout")
 	public String logout(Model m) {
 		sessionModel.setUserName(null);

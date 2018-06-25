@@ -32,6 +32,9 @@ public class Threads {
 	@ManyToOne
 	private Users users;
 	
+	@NotNull
+	private Integer resesCount = 1;
+	
 	public Integer getThreadId() {
 		return threadId;
 	}
