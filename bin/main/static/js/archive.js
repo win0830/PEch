@@ -60,6 +60,29 @@ $(function(){
 	});
 	
 	
+	//カテゴリ選択
+//	cateParams = {
+//	        url: "/getcatego",
+//	        dataType: "json",
+//	        type: "get",
+//	        contentType: "application/json"
+//	    };
+//
+//	$.ajax(params)
+//	.done(function(data,status,jqXHR){
+//	    console.log(data);
+	
+	$('select').append('<option value="null">選択しない</option>');
+	
+	for(var i=0; i<categories.size; i++){
+		$('select').append('<option value="'+ categories[i].categoryId +'">'
+				+ categories[i].categoryname  + '</option>');
+	}
+	
+	$('select').append('<option value="0">全て</option>');
+
+	
+	
 	
 	
 	
