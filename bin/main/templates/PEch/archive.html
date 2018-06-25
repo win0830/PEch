@@ -29,7 +29,10 @@
       </li>
       &nbsp;&nbsp;
       <li class="nav-item">
-        <button type="button" class="btn btn-danger">ログアウト</button>
+        <!-- ログアウト機能追加　馬場 -->
+        <form action="logout">
+			<input type="submit" class="btn btn-danger" value="ログアウト"/>
+		</form>
       </li>
     </ul>
   </nav>
@@ -57,23 +60,13 @@
         <tr>
           <th>作成日</th>
           <th>スレッドタイトル</th>
+          <th>カテゴリ</th>
           <th>作成者</th>
           <th>レス数</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>8時10分</td>
-          <td>だれかポインタ教えて</td>
-          <td>大島優希</td>
-          <td><span class="badge badge-primary badge-pill">19</span></td>
-        </tr>
-        <tr>
-          <td>19時19分</td>
-          <td>俺よりJava自信ニキのやつおる？</td>
-          <td>前田龍也</td>
-          <td><span class="badge badge-primary badge-pill">81</span></td>
-        </tr>
+        <!-- ＪＳでデータ挿入 -->
       </tbody>
     </table>
     </div>
