@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.example.demo.model.ThreadsForm;
 import com.example.demo.model.ThreadsRepos;
 import com.google.gson.Gson;
+import com.example.demo.SessionModel;
+import com.example.demo.model.UsersRepos;
 import com.example.demo.model.Categories;
 import com.example.demo.model.CategoriesRepos;
 import com.example.demo.model.CreateThreadForm;
@@ -31,17 +33,22 @@ public class ArchiveController {
 	@Autowired
 	private ResesRepos resesRepos;
 	@Autowired
+	private SessionModel sessionModel;
+	@Autowired
 	private CategoriesRepos categoriesRepos;
+	@Autowired
+	private UsersRepos usersRepos;
 	
 	// show page
 	@RequestMapping("/archive")
-	public String getArchive() {
+	public String getArchive(Model model) {
+		model.addAttribute("user_name", sessionModel.getUserName());//ユーザーネーム表示
 		return "PEch/archive";
 	}
 	
 	@RequestMapping("/createThread")
 	public String createThread(CreateThreadForm createThreadForm) {
-		
+		Threads thread = new Threads();
 		return "PEch/archive";
 	}
 	
@@ -61,7 +68,11 @@ public class ArchiveController {
 		}
 		return new Gson().toJson(threads);
 	}
-
+	/*@RequestMapping("/createThread")
+	public String createThread(CreateThreadForm createThreadForm, Model model) {
+		model.addAttribute("user_name", sessionModel.getUserName());//ユーザーネーム表示
+		return "PEch/archive";
+	}*/
 	
 	
 	@RequestMapping(value = "searchThreads", 
@@ -87,5 +98,14 @@ public class ArchiveController {
 		}
 		
 		return new Gson().toJson(threads);
+	}
+	
+	@RequestMapping(value = "getCategories", 
+			consumes = MediaType.APPLICATION_JSON_VALUE, 
+			method = RequestMethod.GET)
+	@ResponseBody
+	public String getCategories() {
+		List<Categories> categories = categoriesRepos.findAll();
+		return new Gson().toJson(categories);
 	}
 }
