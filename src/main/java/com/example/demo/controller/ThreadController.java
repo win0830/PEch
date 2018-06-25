@@ -31,11 +31,8 @@ public class ThreadController {
 	private ResesRepos resesRepos;
 	@Autowired
 	private SessionModel sessionModel;
-<<<<<<< HEAD
-=======
 	@Autowired
 	private UsersRepos usersRepos;
->>>>>>> refs/remotes/origin/master
 	
 	@RequestMapping("/thread")
 	public String getTread(Model model) {

@@ -16,12 +16,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.example.demo.model.ThreadsForm;
 import com.example.demo.model.ThreadsRepos;
 import com.google.gson.Gson;
-<<<<<<< HEAD
 import com.example.demo.SessionModel;
-=======
 import com.example.demo.model.Categories;
 import com.example.demo.model.CategoriesRepos;
->>>>>>> refs/remotes/origin/master
 import com.example.demo.model.CreateThreadForm;
 import com.example.demo.model.Reses;
 import com.example.demo.model.ResesRepos;
@@ -35,11 +32,9 @@ public class ArchiveController {
 	@Autowired
 	private ResesRepos resesRepos;
 	@Autowired
-<<<<<<< HEAD
 	private SessionModel sessionModel;
-=======
+	@Autowired
 	private CategoriesRepos categoriesRepos;
->>>>>>> refs/remotes/origin/master
 	
 	// show page
 	@RequestMapping("/archive")
@@ -70,13 +65,11 @@ public class ArchiveController {
 		}
 		return new Gson().toJson(threads);
 	}
-
-<<<<<<< HEAD
-	@RequestMapping("/createThread")
+	/*@RequestMapping("/createThread")
 	public String createThread(CreateThreadForm createThreadForm, Model model) {
 		model.addAttribute("user_name", sessionModel.getUserName());//ユーザーネーム表示
 		return "PEch/archive";
-=======
+	}*/
 	
 	
 	@RequestMapping(value = "searchThreads", 
@@ -102,6 +95,5 @@ public class ArchiveController {
 		}
 		
 		return new Gson().toJson(threads);
->>>>>>> refs/remotes/origin/master
 	}
 }
