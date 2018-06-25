@@ -35,6 +35,14 @@ public class Threads {
 	@NotNull
 	private Integer resesCount = 1;
 	
+	public Integer getResesCount() {
+		return resesCount;
+	}
+
+	public void setResesCount(Integer resesCount) {
+		this.resesCount = resesCount;
+	}
+
 	public Integer getThreadId() {
 		return threadId;
 	}
