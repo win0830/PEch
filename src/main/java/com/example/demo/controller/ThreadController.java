@@ -61,7 +61,7 @@ public class ThreadController {
 	// show res all 
 	@RequestMapping(value="/getReses",
 			consumes=MediaType.APPLICATION_JSON_VALUE,
-			method = RequestMethod.POST)
+			method = RequestMethod.GET)
     @ResponseBody
 	public String getReses(@RequestBody ResesForm resesForm) {
 		List<Reses> reses = new ArrayList<Reses>();
