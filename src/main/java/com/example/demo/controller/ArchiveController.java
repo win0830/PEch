@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.example.demo.model.ThreadsForm;
 import com.example.demo.model.ThreadsRepos;
 import com.google.gson.Gson;
-
+import com.example.demo.SessionModel;
 import com.example.demo.model.CreateThreadForm;
 import com.example.demo.model.Reses;
 import com.example.demo.model.ResesRepos;
@@ -29,10 +29,13 @@ public class ArchiveController {
 	private ThreadsRepos threadsRepos;
 	@Autowired
 	private ResesRepos resesRepos;
+	@Autowired
+	private SessionModel sessionModel;
 	
 	// show page
 	@RequestMapping("/archive")
-	public String getArchive() {
+	public String getArchive(Model model) {
+		model.addAttribute("user_name", sessionModel.getUserName());//ユーザーネーム表示
 		return "PEch/archive";
 	}
 	
@@ -41,7 +44,7 @@ public class ArchiveController {
 			consumes = MediaType.APPLICATION_JSON_VALUE, 
 			method = RequestMethod.GET)
 	@ResponseBody
-	public String getTreads(Model m) {
+	public String getTreads() {
 		List<Reses> reses = resesRepos.findAll(new Sort(Sort.Direction.DESC,"postTime"));
 		List<Threads> threads = new ArrayList<>();
 		threads.add(threadsRepos.findById(reses.get(0).getThreads().getThreadId()).get());
@@ -54,8 +57,8 @@ public class ArchiveController {
 	}
 
 	@RequestMapping("/createThread")
-	public String createThread(CreateThreadForm createThreadForm) {
-		
+	public String createThread(CreateThreadForm createThreadForm, Model model) {
+		model.addAttribute("user_name", sessionModel.getUserName());//ユーザーネーム表示
 		return "PEch/archive";
 	}
 }
