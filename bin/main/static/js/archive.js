@@ -15,7 +15,7 @@ $(function(){
 	});
 	
 	//ログアウト
-	$('#logout').on('click',function(){
+	/*$('#logout').on('click',function(){
 		const toast = swal.mixin({
 			  toast: true,
 			  position: 'top-end',
@@ -27,7 +27,7 @@ $(function(){
 			  type: 'success',
 			  title: 'ログアウト成功しました。'
 			})
-	});
+	});*/
 	
 	/* 
 	* main

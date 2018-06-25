@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -55,6 +56,7 @@ public class LoginController {
 					.equals(form.getPassword())) {
 				sessionModel.setUserName(usersRepos.findByUserId(form.getUserId()).getUserName());//�ｿｽZ�ｿｽb�ｿｽV�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽﾉ�ｿｽ�ｿｽ[�ｿｽU�ｿｽ[�ｿｽl�ｿｽ[�ｿｽ�ｿｽ�ｿｽi�ｿｽ�ｿｽ�ｿｽ{�ｿｽ�ｿｽj�ｿｽZ�ｿｽb�ｿｽg
 				model.addAttribute("username",usersRepos.findByUserId(form.getUserId()).getUserName());//�ｿｽ�ｿｽ�ｿｽf�ｿｽ�ｿｽ�ｿｽﾉ�ｿｽ�ｿｽ[�ｿｽU�ｿｽ[�ｿｽl�ｿｽ[�ｿｽ�ｿｽ�ｿｽﾌセ�ｿｽb�ｿｽg
+				sessionModel.setUserId(usersRepos.findByUserId(form.getUserId()).getUserId());
 				return "PEch/archive";
 			}
 		}
@@ -66,8 +68,9 @@ public class LoginController {
 	
 	//�ｿｽ�ｿｽ�ｿｽO�ｿｽA�ｿｽE�ｿｽg�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽﾄ�ｿｽ�ｿｽO�ｿｽC�ｿｽ�ｿｽ�ｿｽy�ｿｽ[�ｿｽW�ｿｽ�ｿｽ
 	@RequestMapping("logout")
-	public String logout() {
+	public String logout(Model m) {
 		sessionModel.setUserName(null);
+		sessionModel.setUserId(null);
 		return "PEch/login";
 	}
 	
