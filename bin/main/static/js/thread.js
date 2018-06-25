@@ -22,7 +22,7 @@ $(function(){
 
 	$.ajax(resesParam)
 	.done(function(data,status,jqXHR){
-	    console.log(data);
+//	    console.log(data);
 	  //テーブルに受け取った値を表示
 	    for(var i = 0 ; i < data.length ; i++){
 	    	console.log(data);
@@ -42,12 +42,17 @@ $(function(){
 
 	$.ajax(cateParams)
 	.done(function(data,status,jqXHR){
-	    console.log(data);
+//	    console.log(data);
 	  //テーブルに受け取った値を表示
-	    $('select').append('<option value="null">全て</option>');
 	    for(var i=0; i < data.length ; i++){
-	    	$('select').append('<option value="' + data[i].categoryId + '">' + data[i].categoryName + '</option>')
+	    	if(i==0){
+		    	$('select').append('<option value="' + data[i].categoryId + '" selected>' + data[i].categoryName + '</option>');
+	    	}else{
+		    	$('select').append('<option value="' + data[i].categoryId + '">' + data[i].categoryName + '</option>');
+
+	    	}
 	    }
+	    $('select').append('<option value="null">＋追加</option>');
 	    
 	})
 	.fail(function(jqXHR,status,errThrown){
@@ -72,7 +77,7 @@ function send_message(){
 
 	$.ajax(sendMessageParam)
 	.done(function(data,status,jqXHR){
-	    console.log(data);
+//	    console.log(data);
 	  //テーブルに受け取った値を表示
 	    for(var i = 0 ; i < data.length ; i++){
 	    	console.log(data);
