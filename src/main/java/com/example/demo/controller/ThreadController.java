@@ -40,6 +40,14 @@ public class ThreadController {
 		return "PEch/thread";
 	}
 	
+	@RequestMapping(value = "/getThreadInfo", 
+			consumes = MediaType.APPLICATION_JSON_VALUE, 
+			method = RequestMethod.GET)
+	@ResponseBody
+	public String getThreadInfo() {
+		return new Gson().toJson("");
+	}
+	
 	// レス投稿
 	@RequestMapping(value = "sendMessage", 
 			consumes = MediaType.APPLICATION_JSON_VALUE, 

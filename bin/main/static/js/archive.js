@@ -1,5 +1,6 @@
 var thParam;
 var cateParam;
+var threadPageParam;
 
 $(function(){
 	
@@ -44,15 +45,34 @@ $(function(){
 
 	$.ajax(thParam)
 	.done(function(data,status,jqXHR){
-	    console.log(data);
+	  console.log(data);
 	  //テーブルに受け取った値を表示
-	    for(var i = 0 ; i < data.length ; i++){
-	    	$("tbody").append('<tr><td>' + data[i].createdDate.date.year +'/'+ data[i].createdDate.date.month +'/'+ data[i].createdDate.date.day +' '+ data[i].createdDate.time.hour +':'+ data[i].createdDate.time.minute + ':'+ data[i].createdDate.time.second + '</td><td>'
-					+ data[i].threadName + '</td><td>'
-					+ data[i].categories.categoryName + '</td><td>'
-					+ data[i].users.userName + '</td><td><span class="badge badge-primary badge-pill">' + data[i].resesCount  + '</span></td></tr>');
-	    }
-	    
+    for(var i = 0 ; i < data.length ; i++){
+    	$("tbody").append('<tr class="threadId" value="'
+    		+ data[i].threadId + '"><td>' + data[i].createdDate.date.year +'/'+ data[i].createdDate.date.month +'/'+ data[i].createdDate.date.day +' '+ data[i].createdDate.time.hour +':'+ data[i].createdDate.time.minute + ':'+ data[i].createdDate.time.second + '</td><td>'
+				+ data[i].threadName + '</td><td>'
+				+ data[i].categories.categoryName + '</td><td>'
+				+ data[i].users.userName + '</td><td><span class="badge badge-primary badge-pill">' + data[i].resesCount  + '</span></td></tr></form>');
+    }
+	  $('.threadId').on('click', function(){
+	  	threadPageParam = {
+	        url: "/getThreadInfo",
+	        dataType: "json",
+	        type: "get",
+	        contentType: "application/json",
+	        data: {
+	        	threadId: $(this).attr('value')
+	        }
+	    };
+	    $.ajax(thParam)
+			.done(function(data,status,jqXHR){
+				location.href = '/thread';
+			})
+			.fail(function(jqXHR,status,errThrown){
+	    	console.error("Error:" + status);
+			});
+	  	
+	  });
 	    
 	    
 	})
