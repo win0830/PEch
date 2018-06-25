@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.model.ThreadsForm;
 import com.example.demo.model.ThreadsRepos;
+import com.example.demo.model.UsersRepos;
 import com.google.gson.Gson;
 import com.example.demo.model.Categories;
 import com.example.demo.model.CategoriesRepos;
@@ -32,6 +33,8 @@ public class ArchiveController {
 	private ResesRepos resesRepos;
 	@Autowired
 	private CategoriesRepos categoriesRepos;
+	@Autowired
+	private UsersRepos usersRepos;
 	
 	// show page
 	@RequestMapping("/archive")
@@ -41,7 +44,7 @@ public class ArchiveController {
 	
 	@RequestMapping("/createThread")
 	public String createThread(CreateThreadForm createThreadForm) {
-		
+		Threads thread = new Threads();
 		return "PEch/archive";
 	}
 	
@@ -87,5 +90,14 @@ public class ArchiveController {
 		}
 		
 		return new Gson().toJson(threads);
+	}
+	
+	@RequestMapping(value = "getCategories", 
+			consumes = MediaType.APPLICATION_JSON_VALUE, 
+			method = RequestMethod.GET)
+	@ResponseBody
+	public String getCategories() {
+		List<Categories> categories = categoriesRepos.findAll();
+		return new Gson().toJson(categories);
 	}
 }
