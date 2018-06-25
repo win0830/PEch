@@ -15,9 +15,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.model.ThreadsForm;
 import com.example.demo.model.ThreadsRepos;
+import com.example.demo.model.Users;
+import com.example.demo.model.UsersRepos;
 import com.google.gson.Gson;
 import com.example.demo.SessionModel;
-import com.example.demo.model.UsersRepos;
 import com.example.demo.model.Categories;
 import com.example.demo.model.CategoriesRepos;
 import com.example.demo.model.CreateThreadForm;
@@ -47,9 +48,23 @@ public class ArchiveController {
 	}
 	
 	@RequestMapping("/createThread")
-	public String createThread(CreateThreadForm createThreadForm) {
+	public String createThread(Model model, CreateThreadForm createThreadForm) {
+		Users user = usersRepos.findByUserId( sessionModel.getUserId() );
+		//スレッド作成
 		Threads thread = new Threads();
-		return "PEch/archive";
+		thread.setCategories( createThreadForm.getCategories() );
+		thread.setThreadName( createThreadForm.getThreadName() );
+		thread.setUsers( user );
+		thread = threadsRepos.save(thread);
+		//1レス投稿
+		Reses res = new Reses();
+		res.setIsOpenName( createThreadForm.getIsOpenName() );
+		res.setRes( createThreadForm.getRes() );
+		res.setThreads( thread );
+		res.setUsers( user );
+		resesRepos.save( res );
+		model.addAttribute("thread", thread);
+		return "PEch/thread";
 	}
 	
 	// show thread all 
