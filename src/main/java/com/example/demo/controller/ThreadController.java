@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.model.Reses;
+import com.example.demo.model.ResesForm;
 import com.example.demo.model.ResesRepos;
 import com.example.demo.model.ThreadsForm;
 import com.google.gson.Gson;
@@ -34,12 +35,15 @@ public class ThreadController {
 		return new Gson().toJson("");
 	}
 	
-	@RequestMapping(value="/getReses", method = RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
+	// show res all 
+	@RequestMapping(value="/getReses",
+			consumes=MediaType.APPLICATION_JSON_VALUE,
+			method = RequestMethod.POST)
     @ResponseBody
-	public String getReses(@RequestBody ThreadsForm threadsForm) {
+	public String getReses(@RequestBody ResesForm resesForm) {
 		List<Reses> reses = new ArrayList<Reses>();
 		for(Reses res : resesRepos.findAll()) {
-			if(res.getThreads().getThreadId() == threadsForm.getThreadId()) {
+			if(res.getThreads().getThreadId() == resesForm.getThreadId()) {
 				reses.add(res);
 			}
 		}

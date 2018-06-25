@@ -8,18 +8,11 @@ public class ThreadsForm implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Integer threadId;
 	private Integer page;
 	private Integer threadsCount;
 	private String serchWord;
 	private String category;
 	
-	public Integer getThreadId() {
-		return threadId;
-	}
-	public void setThreadId(Integer threadId) {
-		this.threadId = threadId;
-	}
 	public Integer getPage() {
 		return page;
 	}
