@@ -49,7 +49,7 @@ $(function(){
 	    	$("tbody").append('<tr><td>' + data[i].createdDate.date.year +'/'+ data[i].createdDate.date.month +'/'+ data[i].createdDate.date.day +' '+ data[i].createdDate.time.hour +':'+ data[i].createdDate.time.minute + ':'+ data[i].createdDate.time.second + '</td><td>'
 					+ data[i].threadName + '</td><td>'
 					+ data[i].categories.categoryName + '</td><td>'
-					+ data[i].users.userName + '</td><td><span class="badge badge-primary badge-pill">123</span></td></tr>');
+					+ data[i].users.userName + '</td><td><span class="badge badge-primary badge-pill">' + data[i].resesCount  + '</span></td></tr>');
 	    }
 	    
 	    

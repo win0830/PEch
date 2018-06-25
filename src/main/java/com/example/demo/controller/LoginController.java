@@ -56,7 +56,11 @@ public class LoginController {
 					.equals(form.getPassword())) {
 				sessionModel.setUserName(usersRepos.findByUserId(form.getUserId()).getUserName());//�ｿｽZ�ｿｽb�ｿｽV�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽﾉ�ｿｽ�ｿｽ[�ｿｽU�ｿｽ[�ｿｽl�ｿｽ[�ｿｽ�ｿｽ�ｿｽi�ｿｽ�ｿｽ�ｿｽ{�ｿｽ�ｿｽj�ｿｽZ�ｿｽb�ｿｽg
 				model.addAttribute("username",usersRepos.findByUserId(form.getUserId()).getUserName());//�ｿｽ�ｿｽ�ｿｽf�ｿｽ�ｿｽ�ｿｽﾉ�ｿｽ�ｿｽ[�ｿｽU�ｿｽ[�ｿｽl�ｿｽ[�ｿｽ�ｿｽ�ｿｽﾌセ�ｿｽb�ｿｽg
+<<<<<<< HEAD
 				model.addAttribute("user_name", sessionModel.getUserName());//ユーザーネーム表示
+=======
+				sessionModel.setUserId(usersRepos.findByUserId(form.getUserId()).getUserId());
+>>>>>>> refs/remotes/origin/master
 				return "PEch/archive";
 			}
 		}
@@ -71,6 +75,7 @@ public class LoginController {
 	@RequestMapping("logout")
 	public String logout(Model m) {
 		sessionModel.setUserName(null);
+		sessionModel.setUserId(null);
 		return "PEch/login";
 	}
 	

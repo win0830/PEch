@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ThreadsRepos extends JpaRepository<Threads, Integer>{
 	List<Threads> findByCategories(Categories categories);
-	//List<Threads> findByOrderByCreatedDateDesc();
+	List<Threads> findByThreadNameContaining(String threadNitle);
 }
