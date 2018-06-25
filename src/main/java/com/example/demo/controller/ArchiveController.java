@@ -75,7 +75,7 @@ public class ArchiveController {
 			threads.addAll(threadsRepos.findByCategories(cate.get(0)));
 		}
 		if(form.getSerchWord() != null) {
-			threads.addAll(threadsRepos.findByThreadTitleContaining(form.getSerchWord()));
+			threads.addAll(threadsRepos.findByThreadNameContaining(form.getSerchWord()));
 		}
 		
 		for(int i = 0 ; i < threads.size() ; i++) {
