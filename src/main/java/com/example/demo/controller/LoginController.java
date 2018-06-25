@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.example.demo.SessionModel;
 import com.example.demo.model.LoginForm;
 import com.example.demo.model.UsersRepos;
+import com.example.demo.service.TestService;
 import com.google.gson.Gson;
 
 @Controller
@@ -25,9 +26,13 @@ public class LoginController {
 	@Autowired
 	private SessionModel sessionModel;
 	
-	//ƒgƒbƒvƒy[ƒWiƒƒOƒCƒ“ƒy[ƒWj‚Ö”ò‚Î‚·
+	@Autowired
+	private TestService service;
+	
+	//ï¿½gï¿½bï¿½vï¿½yï¿½[ï¿½Wï¿½iï¿½ï¿½ï¿½Oï¿½Cï¿½ï¿½ï¿½yï¿½[ï¿½Wï¿½jï¿½Ö”ï¿½Î‚ï¿½
 	@RequestMapping("/")
 	public String getLogin() {
+		//service.create();
 		return "PEch/login";
 	}
 	
@@ -42,24 +47,24 @@ public class LoginController {
 	}
 	
 	
-	//ƒƒOƒCƒ“ˆ—‚µ‚ÄƒXƒŒƒbƒhˆê——ƒy[ƒW‚Ö
+	//ï¿½ï¿½ï¿½Oï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÄƒXï¿½ï¿½ï¿½bï¿½hï¿½ê——ï¿½yï¿½[ï¿½Wï¿½ï¿½
 	@RequestMapping(value="login")
 	public String login(ModelMap model, LoginForm form ,HttpServletRequest req) {
-		if(usersRepos.findByUserId(form.getUserId())!=null) { //ƒ†[ƒU[‚h‚ciƒ[ƒ}šj‚Ìˆê’v‚·‚éƒ†[ƒU[‚ÌŒŸõ
-			if(usersRepos.findByUserId(form.getUserId()).getPassword()//ˆê’v‚µ‚½ƒ†[ƒU[‚ÆƒpƒXƒ[ƒh‚ªˆê’v‚·‚é‚©‚Ç‚¤‚©
+		if(usersRepos.findByUserId(form.getUserId())!=null) { //ï¿½ï¿½ï¿½[ï¿½Uï¿½[ï¿½hï¿½cï¿½iï¿½ï¿½ï¿½[ï¿½}ï¿½ï¿½ï¿½jï¿½Ìˆï¿½vï¿½ï¿½ï¿½éƒ†ï¿½[ï¿½Uï¿½[ï¿½ÌŒï¿½ï¿½ï¿½
+			if(usersRepos.findByUserId(form.getUserId()).getPassword()//ï¿½ï¿½vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½Uï¿½[ï¿½Æƒpï¿½Xï¿½ï¿½ï¿½[ï¿½hï¿½ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½é‚©ï¿½Ç‚ï¿½ï¿½ï¿½
 					.equals(form.getPassword())) {
-				sessionModel.setUserName(usersRepos.findByUserId(form.getUserId()).getUserName());//ƒZƒbƒVƒ‡ƒ“‚Éƒ†[ƒU[ƒl[ƒ€i“ú–{ŒêjƒZƒbƒg
-				model.addAttribute("username",usersRepos.findByUserId(form.getUserId()).getUserName());//ƒ‚ƒfƒ‹‚Éƒ†[ƒU[ƒl[ƒ€‚ÌƒZƒbƒg
+				sessionModel.setUserName(usersRepos.findByUserId(form.getUserId()).getUserName());//ï¿½Zï¿½bï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Éƒï¿½ï¿½[ï¿½Uï¿½[ï¿½lï¿½[ï¿½ï¿½ï¿½iï¿½ï¿½ï¿½{ï¿½ï¿½jï¿½Zï¿½bï¿½g
+				model.addAttribute("username",usersRepos.findByUserId(form.getUserId()).getUserName());//ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½Éƒï¿½ï¿½[ï¿½Uï¿½[ï¿½lï¿½[ï¿½ï¿½ï¿½ÌƒZï¿½bï¿½g
 				return "PEch/archive";
 			}
 		}
-		//ƒƒOƒCƒ“¸”sF¸”sƒtƒ‰ƒO‚ğ‚½‚Ä‚Äƒ†[ƒU[‚h‚c‚¾‚¯ƒZƒbƒg‚µ‚ÄƒƒOƒCƒ“‰æ–Ê‚Ö
+		//ï¿½ï¿½ï¿½Oï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½Fï¿½ï¿½ï¿½sï¿½tï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½ï¿½ï¿½Ä‚Äƒï¿½ï¿½[ï¿½Uï¿½[ï¿½hï¿½cï¿½ï¿½ï¿½ï¿½ï¿½Zï¿½bï¿½gï¿½ï¿½ï¿½Äƒï¿½ï¿½Oï¿½Cï¿½ï¿½ï¿½ï¿½Ê‚ï¿½
 		model.addAttribute("flag", true);
 		model.addAttribute("userId", form.getUserId());
 		return "PEch/login";
 	}
 	
-	//ƒƒOƒAƒEƒgˆ—‚µ‚ÄƒƒOƒCƒ“ƒy[ƒW‚Ö
+	//ï¿½ï¿½ï¿½Oï¿½Aï¿½Eï¿½gï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Äƒï¿½ï¿½Oï¿½Cï¿½ï¿½ï¿½yï¿½[ï¿½Wï¿½ï¿½
 	@RequestMapping("logout")
 	public String logout() {
 		sessionModel.setUserName(null);
