@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -40,8 +41,7 @@ public class ArchiveController {
 			consumes = MediaType.APPLICATION_JSON_VALUE, 
 			method = RequestMethod.GET)
 	@ResponseBody
-	public String getTreads() {// @RequestBody ThreadsForm form
-//		int threadsCount = form.getThreadsCount();
+	public String getTreads(Model m) {
 		List<Reses> reses = resesRepos.findAll(new Sort(Sort.Direction.DESC,"postTime"));
 		List<Threads> threads = new ArrayList<>();
 		threads.add(threadsRepos.findById(reses.get(0).getThreads().getThreadId()).get());
