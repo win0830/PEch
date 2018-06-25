@@ -34,15 +34,16 @@ public class ArchiveController {
 	@Autowired
 	private ResesRepos resesRepos;
 	@Autowired
+	private SessionModel sessionModel;
+	@Autowired
 	private CategoriesRepos categoriesRepos;
 	@Autowired
 	private UsersRepos usersRepos;
-	@Autowired
-	private SessionModel sessionModel;
 	
 	// show page
 	@RequestMapping("/archive")
-	public String getArchive() {
+	public String getArchive(Model model) {
+		model.addAttribute("user_name", sessionModel.getUserName());//ユーザーネーム表示
 		return "PEch/archive";
 	}
 	
@@ -82,7 +83,11 @@ public class ArchiveController {
 		}
 		return new Gson().toJson(threads);
 	}
-
+	/*@RequestMapping("/createThread")
+	public String createThread(CreateThreadForm createThreadForm, Model model) {
+		model.addAttribute("user_name", sessionModel.getUserName());//ユーザーネーム表示
+		return "PEch/archive";
+	}*/
 	
 	
 	@RequestMapping(value = "searchThreads", 

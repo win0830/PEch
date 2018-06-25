@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,7 +35,8 @@ public class ThreadController {
 	private UsersRepos usersRepos;
 	
 	@RequestMapping("/thread")
-	public String getTread() {
+	public String getTread(Model model) {
+		model.addAttribute("user_name", sessionModel.getUserName());//ユーザーネーム表示
 		return "PEch/thread";
 	}
 	

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th lang="ja">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>PEch</title>
@@ -33,6 +33,11 @@
         <form action="logout">
 			<input type="submit" class="btn btn-danger" value="ログアウト"/>
 		</form>
+      </li>
+      &nbsp;&nbsp;
+      <li class="nav-item">
+       	<font color="yellow"><a th:text="${user_name}">ゲスト</a></font>
+       	<a><font color="#FFFFFF">さん</font></a>
       </li>
     </ul>
   </nav>
@@ -82,7 +87,7 @@
           スレ作成
         </div>
           <div class="card-body">
-            <form action="#">
+            <form action="/archive">
 
               <div class="form-group">
                 <label>カテゴリ&emsp;：</label>&nbsp;
