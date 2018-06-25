@@ -10,9 +10,9 @@ import com.google.gson.Gson;
 @Controller
 public class ThreadController {
 
-	@RequestMapping("/tread")
+	@RequestMapping("/thread")
 	public String getTread() {
-		return "PEch/tread";
+		return "PEch/thread";
 	}
 	
 	@RequestMapping(value = "sendMessage", 
