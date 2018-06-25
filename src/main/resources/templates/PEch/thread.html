@@ -34,7 +34,11 @@
         <form action="logout">
 			<input type="submit" class="btn btn-danger" value="ログアウト"/>
 		</form>
-		
+      </li>
+      &nbsp;&nbsp;
+      <li class="nav-item">
+       	<font color="yellow"><a th:text="${user_name}">ゲスト</a></font>
+       	<a><font color="#FFFFFF">さん</font></a>
       </li>
     </ul>
   </nav>
@@ -80,7 +84,7 @@
 	  <textarea id="msg" rows="3" cols="30"></textarea><br>
 	　　<div class="form-check">
 	 	<label class="form-check-label">
-	   		<input type="checkbox" class="form-check-input" value="">名前公開　　　<button>送信</button>
+	   		<input type="checkbox" class="form-check-input" value="">名前公開　　　<button id="send_message">送信</button>
 	   	</label>
 	  </div>	
 	 </div>   

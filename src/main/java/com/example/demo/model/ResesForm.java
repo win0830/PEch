@@ -7,7 +7,7 @@ public class ResesForm implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private String res;
 	private Integer threadId;
-	private Integer isOpenName = 0;
+	private Integer isOpenName;
 	public String getRes() {
 		return res;
 	}
