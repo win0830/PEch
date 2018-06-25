@@ -1,6 +1,7 @@
 var thParam;
 var cateParam;
 var threadPageParam;
+var index;
 
 $(function(){
 	
@@ -45,7 +46,7 @@ $(function(){
 
 	$.ajax(thParam)
 	.done(function(data,status,jqXHR){
-	  console.log(data);
+//	    console.log(data);
 	  //テーブルに受け取った値を表示
     for(var i = 0 ; i < data.length ; i++){
     	$("tbody").append('<tr class="threadId" value="'
@@ -90,19 +91,28 @@ $(function(){
 
 	$.ajax(cateParam)
 	.done(function(data,status,jqXHR){
-	    console.log(data);
-	
-		$('select').append('<option value="null">全て</option>');
+//	    console.log(data);
+		$('select:eq(0)').append('<option value="null selected">全て</option>');	//検索
 		
 		for(var i=0; i < data.length; i++){
+			if(i==0){
+				//検索の場合はselectedなし
+				$('select:eq(0)').append('<option value="'+ data[i].categoryId +'">'
+						+ data[i].categoryName  + '</option>');
+				
+				//追加の場合はJavaにselected
+				$('select:eq(1)').append('<option value="'+ data[i].categoryId +'" selected>'
+						+ data[i].categoryName  + '</option>');
+				
+			}else{
 			$('select').append('<option value="'+ data[i].categoryId +'">'
 					+ data[i].categoryName  + '</option>');
+			}
 		}
+		$('select:eq(1)').append('<option value="null">＋追加</option>');	//追加
 		
 	})
 	.fail(function(jqXHR,status,errThrown){
 	    console.error("Error:" + status);
 	});
-	
-
 });
