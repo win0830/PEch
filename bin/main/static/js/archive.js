@@ -7,7 +7,7 @@ $(function(){
 	
 	/* 
 	* header
-	*/
+	*/ 
 	
 	//スレッド新規作成
 	$('#open_create_threads').on('click', function(){

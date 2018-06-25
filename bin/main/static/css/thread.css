@@ -24,3 +24,7 @@ label {
 #inputArea{
 	background-color: rgba(154, 154, 154, 0.8);
 }
+
+#add_category{
+	display: none;
+}
