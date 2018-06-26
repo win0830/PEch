@@ -8,6 +8,7 @@ public class ResesForm implements Serializable{
 	private String res;
 	private Integer threadId;
 	private Integer isOpenName;
+	
 	public String getRes() {
 		return res;
 	}

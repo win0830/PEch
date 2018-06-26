@@ -51,8 +51,10 @@
   <!-- main -->
   <div class="container-fluid mr-auto" style="margin-top:120px">
 
+	
     <h2 class="offset-lg-1 col-lg-7">[[${threads.threadName}]]</h2>
     <span class="offset-lg-1 col-lg-7">[[${threads.createdDate.year}]]/[[${threads.createdDate.monthValue}]]/[[${threads.createdDate.dayOfMonth}]] [['[ ']][[${threads.categories.categoryName}]][[' ]']]</span>
+	<span id="threadId" style="display:none;">[[${threads.threadId}]]</span>
 
   <!-- ress -->
     <ul class="reses_list list-group list-group-flush offset-lg-1 col-lg-7">
@@ -63,17 +65,30 @@
   <div class="cal mr-auto position-fixed offset-lg-9 col-lg-2" style="top: 15%;">
   </div>
   
-<!-- inputArea -->
+<!-- <!-- inputArea --> -->
+<!--   <div class="mr-auto position-fixed offset-lg-9 col-lg-2" style="top: 65%;"> -->
+<!--   	<label for="msg">本文：</label> -->
+<!-- 	  <textarea id="msg" rows="3" cols="30"></textarea> -->
+<!-- 	　　 -->
+<!-- 	 	<label class="form-check-label"> -->
+<!-- 	   		<input type="checkbox" class="form-check-input" value="">名前公開 -->
+<!-- 	   		<button id="send_message">送信</button> -->
+<!-- 	   	</label> -->
+<!-- 	</div>  -->
+	
+	<!-- inputArea -->
   <div class="mr-auto position-fixed offset-lg-9 col-lg-2" style="top: 65%;">
-  	<label for="msg">本文：</label>
-	  <textarea id="msg" rows="3" cols="30"></textarea>
-	　　
+  	
+  		<label for="msg">本文：</label>
+			<textarea id="msg" rows="3" cols="30" name="text"></textarea>　
 	 	<label class="form-check-label">
-	   		<input type="checkbox" class="form-check-input" value="">名前公開
+	   		<input type="checkbox" class="form-check-input" value="1">名前公開
 	   		<button id="send_message">送信</button>
 	   	</label>
-	 </div>   
-   </div>
+	</div>   
+
+
+   
 
 
   <div class="create_threads_mask"></div>

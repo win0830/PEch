@@ -46,7 +46,7 @@ public class ThreadController {
 	// レス投稿
 	@RequestMapping(value = "/sendMessage", 
 			consumes = MediaType.APPLICATION_JSON_VALUE, 
-			method = RequestMethod.GET)
+			method = RequestMethod.POST)
 	@ResponseBody
 	public String sendMessage(@RequestBody ResesForm resesForm) {
 		Threads threads = threadsRepos.findById( resesForm.getThreadId() ).get();
@@ -60,7 +60,7 @@ public class ThreadController {
 		Integer i = threads.getResesCount()+1;
 		threads.setResesCount(i);
 		threadsRepos.save(threads);
-		return new Gson().toJson("");
+		return getReses(resesForm.getThreadId());
 	}
 	
 	// show res all 

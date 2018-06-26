@@ -20,7 +20,7 @@ $(function(){
 	        type: "get",
 	        contentType: "application/json",
 	        data: {
-	        	threadId : Number(location.search.substr(10))
+	        	threadId : $('#threadId').html()
 	        }
 	};
 
@@ -85,28 +85,70 @@ $(function(){
 
 });
 
+//function send_message(){
+//	sendMessageParam = {
+//		url: "/sendMessage",
+//		dataType: "json",
+//		type: "get",
+//		contentType: "application/json",
+//		data: {
+//	  	isOpenName : $('.form-check-input').prop('checked'),
+//	  	res : $('#msg').val(),
+//	  	//threadId : $('#thread_id').val()
+//	  }
+//	}
+//
+//	$.ajax(sendMessageParam)
+//	.done(function(data,status,jqXHR){
+////	    console.log(data);
+//	  //テーブルに受け取った値を表示
+//	    for(var i = 0 ; i < data.length ; i++){
+//	    	console.log(data);
+//	    }
+//	})
+//	.fail(function(jqXHR,status,errThrown){
+//	    console.error("Error:" + status);
+//	});
+//}
+
+$('#send_message').on('click', send_message);
+
 function send_message(){
+	var boolean = $('.form-check-input').prop('checked');
+	var num;
+	if(boolean == true){
+		num = 1;
+	}else{
+		num = 0;
+	}
+	var text = $('textarea[name="text"]').val();
+	var id = Number($('#threadId').text());
 	sendMessageParam = {
 		url: "/sendMessage",
-	  dataType: "json",
-	  type: "get",
-	  contentType: "application/json",
-	  data: {
-	  	isOpenName : $('.form-check-input').prop('checked'),
-	  	res : $('#msg').val(),
-	  	//threadId : $('#thread_id').val()
-	  }
+		dataType: "json",
+		type: "post",
+		contentType: "application/json",
+		data: {
+			isOpenName : num,
+		  	res : text,
+		  	threadId : id,
+		}
 	}
+	
+	sendMessageParam.data = JSON.stringify(sendMessageParam.data);
 
 	$.ajax(sendMessageParam)
 	.done(function(data,status,jqXHR){
 //	    console.log(data);
-	  //テーブルに受け取った値を表示
 	    for(var i = 0 ; i < data.length ; i++){
-	    	console.log(data);
+	    	console.log(data[i]);
 	    }
 	})
 	.fail(function(jqXHR,status,errThrown){
 	    console.error("Error:" + status);
 	});
 }
+
+
+
+	
