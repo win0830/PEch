@@ -2,6 +2,8 @@ var thParam;
 var cateParam;
 var threadPageParam;
 var index;
+const DISPLAY_NUM = 10;
+var thData;
 
 $(function(){
 	
@@ -36,6 +38,8 @@ $(function(){
 	* main
 	*/
 	
+	
+	
 	//DB内データの受け取り(スレッド表)
 	thParam = {
 	        url: "/getThreads",
@@ -47,17 +51,10 @@ $(function(){
 	$.ajax(thParam)
 	.done(function(data,status,jqXHR){
 //	    console.log(data);
-	  //テーブルに受け取った値を表示
-    for(var i = 0 ; i < data.length ; i++){
-    	var table = '<tr class="threadId">'
-    		+ '<td><form action="/thread" method="get"><input type="text" name="threadId" style="display:none;" value="' + data[i].threadId + '"></form>'
-    		+ data[i].createdDate.date.year +'/'+ data[i].createdDate.date.month +'/'+ data[i].createdDate.date.day +' '+ data[i].createdDate.time.hour +':'+ data[i].createdDate.time.minute + ':'+ data[i].createdDate.time.second 
-    		+ '</td><td>'
-				+ data[i].threadName + '</td><td>'
-				+ data[i].categories.categoryName + '</td><td>'
-				+ data[i].users.userName + '</td><td><span class="badge badge-primary badge-pill">' + data[i].resesCount  + '</span></td></tr>';
-    	$("tbody").append(table);
-    }
+		thData=data;
+		threadPageParam = 1;
+		pageButtonUpdate();
+		drawThreads();
 	  $('.threadId').on('click', function(){
 	  	//console.log($(this).attr('value'));
 	  	console.log($(this).find('form'));
@@ -136,6 +133,51 @@ $(function(){
 	.fail(function(jqXHR,status,errThrown){
 	    console.error("Error:" + status);
 	});
+	
+	//スレッド一覧表示
+	function drawThreads(){
+		drawNum = threadPageParam*DISPLAY_NUM;	//表示させるスレッド件数
+		$("tbody").empty();
+	    for(var i = drawNum-DISPLAY_NUM ; i < drawNum; i++){
+	    	if(i >= thData.length) break;	//スレッド件数を超える場合、強制的に抜ける
+	    	var table = '<tr class="threadId">'
+	    		+ '<td><form action="/thread" method="get"><input type="text" name="threadId" style="display:none;" value="' + thData[i].threadId + '"></form>'
+	    		+ thData[i].createdDate.date.year +'/'+ thData[i].createdDate.date.month +'/'+ thData[i].createdDate.date.day +' '+ thData[i].createdDate.time.hour +':'+ thData[i].createdDate.time.minute + ':'+ thData[i].createdDate.time.second 
+	    		+ '</td><td>'
+					+ thData[i].threadName + '</td><td>'
+					+ thData[i].categories.categoryName + '</td><td><span class="badge badge-primary badge-pill">' + thData[i].resesCount  + '</span></td></tr>';
+	    	$("tbody").append(table);
+	    }
+	}
+	
+	//ページ
+	$('.page_change').each(function(i,v){
+		$(v).click(function(){
+			threadPageParam = Number( $(v).val() );
+			pageButtonUpdate();
+			drawThreads();
+		});
+	});
+	
+	function pageButtonUpdate(){
+		$('#now_page').html( threadPageParam );
+		$('#prev_page').val( threadPageParam-1 );
+		$('#next_page').val( threadPageParam+1 );
+		
+		if(Number( $('#prev_page').val() )==0){
+			$('#prev_page').prop("disabled", true);
+		}else{
+			$('#prev_page').prop("disabled", false);
+		}
+		$('#now_draw_num').html(DISPLAY_NUM*(threadPageParam-1)+1 );
+		if(Number( $('#next_page').val() )-1 > thData.length / DISPLAY_NUM){
+			$('#next_page').prop("disabled", true);
+			$('#now_draw_num').html($('#now_draw_num').html() + ' ～ ' + thData.length);
+		}else{
+			$('#next_page').prop("disabled", false);
+			$('#now_draw_num').html($('#now_draw_num').html() + ' ～ ' + threadPageParam*DISPLAY_NUM);
+		}
+	}
 });
 
 
