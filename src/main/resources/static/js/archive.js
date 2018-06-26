@@ -155,6 +155,7 @@ $(function(){
 	$('.page_change').each(function(i,v){
 		$(v).click(function(){
 			threadPageParam = Number( $(v).val() );
+			window.location.href = '#';
 			pageButtonUpdate();
 			drawThreads();
 		});
@@ -170,8 +171,10 @@ $(function(){
 		}else{
 			$('#prev_page').prop("disabled", false);
 		}
+		
 		$('#now_draw_num').html(DISPLAY_NUM*(threadPageParam-1)+1 );
-		if(Number( $('#next_page').val() )-1 > thData.length / DISPLAY_NUM){
+		
+		if(Number( $('#next_page').val() )-1 > (thData.length-1) / DISPLAY_NUM){
 			$('#next_page').prop("disabled", true);
 			$('#now_draw_num').html($('#now_draw_num').html() + ' ～ ' + thData.length);
 		}else{
