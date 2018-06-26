@@ -181,10 +181,10 @@ $(function(){
 		
 		if(Number( $('#next_page').val() )-1 > (thData.length-1) / DISPLAY_NUM){
 			$('#next_page').prop("disabled", true);
-			$('#now_draw_num').html($('#now_draw_num').html() + ' ～ ' + thData.length);
+			$('#now_draw_num').html('( ' + $('#now_draw_num').html() + ' ～ ' + thData.length + ' )');
 		}else{
 			$('#next_page').prop("disabled", false);
-			$('#now_draw_num').html($('#now_draw_num').html() + ' ～ ' + threadPageParam*DISPLAY_NUM);
+			$('#now_draw_num').html('( ' + $('#now_draw_num').html() + ' ～ ' + threadPageParam*DISPLAY_NUM + ' )');
 		}
 	}
 	
