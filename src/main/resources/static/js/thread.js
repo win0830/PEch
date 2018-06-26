@@ -12,7 +12,7 @@ $(function(){
 
 	$('#send_message').on('click', send_message);
 
-	//DB内データの受け取り
+	//DB内データの受け取り 
 	resesParam = {
 	        url: "/getReses",
 	        dataType: "json",
