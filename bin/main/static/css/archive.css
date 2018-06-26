@@ -7,7 +7,7 @@
 	position: absolute;
 	top: 20%;
 	z-index:100000;
-	
+
 }
 
 .create_threads_mask{
@@ -20,4 +20,8 @@
 	background-color: black;
 	opacity: 0.60;
 	z-index:99999;
+}
+
+#add_category{
+	display: none;
 }

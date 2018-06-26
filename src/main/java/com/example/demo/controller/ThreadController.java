@@ -35,9 +35,19 @@ public class ThreadController {
 	private UsersRepos usersRepos;
 	
 	@RequestMapping("/thread")
-	public String getTread(Model model) {
+	public String getTread(ResesForm form, Model model) {
 		model.addAttribute("user_name", sessionModel.getUserName());//ユーザーネーム表示
+		System.out.println(form.getThreadId());
 		return "PEch/thread";
+	}
+	
+	@RequestMapping(value = "/getThreadInfo", 
+			consumes = MediaType.APPLICATION_JSON_VALUE, 
+			method = RequestMethod.GET)
+	@ResponseBody
+	public String getThreadInfo() {
+		
+		return new Gson().toJson("");
 	}
 	
 	// レス投稿

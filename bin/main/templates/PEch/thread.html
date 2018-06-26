@@ -29,7 +29,7 @@
       </li>
       &nbsp;&nbsp;
       <li class="nav-item">
-      
+
       <!-- ログアウト機能追加　馬場 -->
         <form action="logout">
 			<input type="submit" class="btn btn-danger" value="ログアウト"/>
@@ -67,7 +67,7 @@
         ４：大島優希<br>
 	　>>３　おったわ
       </li>
-      
+
       <li class="list-group-item">
         ５：イキング<br>
         　キングかなーやっぱりｗｗ自分は思わないんだけど周りにキングってよく言われるｗｗｗこないだＫＭＫＮＧに課題出された時も気がついたら意識無くてプログラムが完成してたしなｗｗｗちなみに彼女は神絵師(聞いてないｗ)
@@ -75,8 +75,8 @@
     </ul>
     <br>
   </div>
-  
-  
+
+
 <!-- inputArea -->
   <div id="inputArea" class="mr-auto pb-5 pt-3 fixed-bottom">
   	<div class="offset-lg-5 col-lg-3">
@@ -86,7 +86,7 @@
 	 	<label class="form-check-label">
 	   		<input type="checkbox" class="form-check-input" value="">名前公開　　　<button id="send_message">送信</button>
 	   	</label>
-	 </div>   
+	 </div>
    </div>
 
   <div class="create_threads_mask"></div>
@@ -100,12 +100,12 @@
 
               <div class="form-group">
                 <label>カテゴリ&emsp;：</label>&nbsp;
-                <select name="category">
+                <select id="selectMenu" name="category">
  					<!-- DB内のcategory表から取得 -->
                 </select>
               </div>
               <!-- keyword -->
-              <div class="form-group">
+              <div id="add_category" class="form-group">
                 <label>新規カテゴリ：</label>&nbsp;
                 <input type="text">
               </div>
