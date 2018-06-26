@@ -18,7 +18,10 @@ $(function(){
 	        url: "/getReses",
 	        dataType: "json",
 	        type: "get",
-	        contentType: "application/json"
+	        contentType: "application/json",
+	        data: {
+	        	threadId : Number(location.search.substr(10))
+	        }
 	};
 
 	$.ajax(resesParam)
@@ -26,11 +29,18 @@ $(function(){
 //	    console.log(data);
 	  //テーブルに受け取った値を表示
 	    for(var i = 0 ; i < data.length ; i++){
-	    	console.log(data);
+	    	console.log(data[i]);
+	    	$('.reses_list').append(
+	    		'<li class="list-group-item">' + (i+1) + '：' 
+	    		+ (data[i].isOpenName == 0 ? data[i].users.userName : '名無し')
+	    		+ '&nbsp;' + data[i].postTime.date.year + '/' + data[i].postTime.date.month + '/' + data[i].postTime.date.day + ' ' 
+	    		+ data[i].postTime.time.hour + ':' + data[i].postTime.time.minute + ':' + data[i].postTime.time.second
+	    		+ '<br>&nbsp;' + data[i].res + '</li>'
+	    	);
 	    }
 	})
 	.fail(function(jqXHR,status,errThrown){
-	    console.error("Error:" + status);
+	    console.error(jqXHR);
 	});
 	
 	//DB内データの受け取り(カテゴリ表) 
@@ -56,9 +66,10 @@ $(function(){
 	    $('select').append('<option value="null">＋追加</option>');
 	    
 	  //selectの値を取得
-		$('select:eq(1)').change(function(){
-			var n = $('option:selected').val();
-			if(n == null){
+		$('select').change(function(){
+			
+			var n = $('select').val();
+			if(n=="null"){
 				$('#add_category').show();
 				
 			}else{
@@ -76,7 +87,7 @@ $(function(){
 
 function send_message(){
 	sendMessageParam = {
-		url: "/getReses",
+		url: "/sendMessage",
 	  dataType: "json",
 	  type: "get",
 	  contentType: "application/json",
