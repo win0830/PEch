@@ -52,7 +52,7 @@ public class ArchiveController {
 		Users user = usersRepos.findByUserId( sessionModel.getUserId() );
 		//スレッド作成
 		Threads thread = new Threads();
-		thread.setCategories( createThreadForm.getCategories() );
+		thread.setCategories( createThreadForm.getCategory() );
 		thread.setThreadName( createThreadForm.getThreadName() );
 		thread.setUsers( user );
 		thread = threadsRepos.save(thread);
@@ -122,5 +122,11 @@ public class ArchiveController {
 	public String getCategories() {
 		List<Categories> categories = categoriesRepos.findAll();
 		return new Gson().toJson(categories);
+	}
+	
+	public void createCategory(String categoryName) {
+		Categories category = new Categories();
+		category.setCategoryName(categoryName);
+		categoriesRepos.save(category);
 	}
 }
