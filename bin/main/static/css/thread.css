@@ -1,6 +1,6 @@
 .create_threads{
 	display: none;
-	position: absolute;
+	position: fixed;
 	top: 20%;
 	z-index:100000;
 }
