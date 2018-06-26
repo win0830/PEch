@@ -1,6 +1,6 @@
 .create_threads{
 	display: none;
-	position: absolute;
+	position: fixed;
 	top: 20%;
 	z-index:100000;
 }
@@ -23,4 +23,8 @@ label {
 
 #inputArea{
 	background-color: rgba(154, 154, 154, 0.8);
+}
+
+#add_category{
+	display:none;
 }
