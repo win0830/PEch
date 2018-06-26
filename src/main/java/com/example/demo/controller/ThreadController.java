@@ -35,8 +35,9 @@ public class ThreadController {
 	private UsersRepos usersRepos;
 	
 	@RequestMapping("/thread")
-	public String getTread(Model model) {
+	public String getTread(ResesForm form, Model model) {
 		model.addAttribute("user_name", sessionModel.getUserName());//ユーザーネーム表示
+		System.out.println(form.getThreadId());
 		return "PEch/thread";
 	}
 	
