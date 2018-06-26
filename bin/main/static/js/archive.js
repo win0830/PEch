@@ -38,7 +38,34 @@ $(function(){
 	* main
 	*/
 	
+	$('#search').on('click',searchThreads);
 	
+	//スレッドの絞込み
+	function searchThreads(){
+		var cateVal = $('select:eq(0)').val() == 'null selected' ? null : $('select:eq(0)').val();
+		var keyword = $('#keyword').val();
+		drawNum = threadPageParam*DISPLAY_NUM;	//表示させるスレッド件数
+		$("tbody").empty();
+	    for(var i = drawNum-DISPLAY_NUM ; i < drawNum; i++){
+	    	if(i >= thData.length) break;	//スレッド件数を超える場合、強制的に抜ける  	
+	    		if(cateVal == thData[i].categories.categoryId){	//選択されているカテゴリに一致するデータのみ表示
+	    			if(keyword==''){
+	    				var table = '<tr class="threadId">'
+		    	    		+ '<td><form action="/thread" method="get"><input type="text" name="threadId" style="display:none;" value="' + thData[i].threadId + '"></form>'
+		    	    		+ thData[i].createdDate.date.year +'/'+ thData[i].createdDate.date.month +'/'+ thData[i].createdDate.date.day +' '+ thData[i].createdDate.time.hour +':'+ thData[i].createdDate.time.minute + ':'+ thData[i].createdDate.time.second 
+		    	    		+ '</td><td>'
+		    					+ thData[i].threadName + '</td><td>'
+		    					+ thData[i].categories.categoryName + '</td><td><span class="badge badge-primary badge-pill">' + thData[i].resesCount  + '</span></td></tr>';
+		    	    	$("tbody").append(table);
+	    			}
+	    			
+	    	    	
+	    		}else if(cateVal == null){	//[全て]だった場合は全件表示
+	    			drawThreads();
+	    			break;
+	    		}
+	    }
+	}
 	
 	//DB内データの受け取り(スレッド表)
 	thParam = {
@@ -99,8 +126,6 @@ $(function(){
 		$('select:eq(0)').append('<option value="null selected">全て</option>');	//検索
 		
 		for(var i=0; i < data.length; i++){
-			console.log( data[i].categoryId );
-			
 			if(i==0){
 				//検索の場合はselectedなし
 				$('select:eq(0)').append('<option value="'+ data[i].categoryId +'">'
@@ -151,7 +176,7 @@ $(function(){
 	    }
 	}
 	
-	//ページ
+	//ページ切り替え
 	$('.page_change').each(function(i,v){
 		$(v).click(function(){
 			threadPageParam = Number( $(v).val() );
