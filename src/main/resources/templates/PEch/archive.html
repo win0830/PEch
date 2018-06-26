@@ -20,7 +20,7 @@
   <!-- header -->
   <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top">
     <ul class="navbar-nav mr-auto">
-    	<li><a class="navbar-brand" href="#"><p class="mb-0" id="logo">PEch</p></a></li>
+    	<li><a class="navbar-brand" href="/archive"><p class="mb-0" id="logo">PEch</p></a></li>
     </ul>
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -68,7 +68,7 @@
           <th>作成日</th>
           <th>スレッドタイトル</th>
           <th>カテゴリ</th>
-          <th>作成者</th>
+          <!-- <th>作成者</th> -->
           <th>レス数</th>
         </tr>
       </thead>
@@ -78,7 +78,13 @@
     </table>
     </div>
   </div>
-
+  
+  <!-- ページ -->
+  <p id="now_draw_num"></p>
+  <button class="page_change" id="prev_page"><<</button>
+  <button id="now_page"></button>
+  <button class="page_change" id="next_page">>></button>
+  <!-- //ページ -->
 
 <div class="create_threads_mask"></div>
   <!-- create threads -->

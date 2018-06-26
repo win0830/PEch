@@ -63,7 +63,7 @@ public class ArchiveController {
 		res.setThreads( thread );
 		res.setUsers( user );
 		resesRepos.save( res );
-		model.addAttribute("thread", thread);
+		model.addAttribute("threads", thread);
 		return "PEch/thread";
 	}
 	
