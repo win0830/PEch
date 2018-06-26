@@ -43,28 +43,31 @@ $(function(){
 	//スレッドの絞込み
 	function searchThreads(){
 		var cateVal = $('select:eq(0)').val() == 'null selected' ? null : $('select:eq(0)').val();
-		var keyword = $('#keyword').val();
-		drawNum = threadPageParam*DISPLAY_NUM;	//表示させるスレッド件数
-		$("tbody").empty();
-	    for(var i = drawNum-DISPLAY_NUM ; i < drawNum; i++){
-	    	if(i >= thData.length) break;	//スレッド件数を超える場合、強制的に抜ける  	
-	    		if(cateVal == thData[i].categories.categoryId){	//選択されているカテゴリに一致するデータのみ表示
-	    			if(keyword==''){
-	    				var table = '<tr class="threadId">'
-		    	    		+ '<td><form action="/thread" method="get"><input type="text" name="threadId" style="display:none;" value="' + thData[i].threadId + '"></form>'
-		    	    		+ thData[i].createdDate.date.year +'/'+ thData[i].createdDate.date.month +'/'+ thData[i].createdDate.date.day +' '+ thData[i].createdDate.time.hour +':'+ thData[i].createdDate.time.minute + ':'+ thData[i].createdDate.time.second 
-		    	    		+ '</td><td>'
-		    					+ thData[i].threadName + '</td><td>'
-		    					+ thData[i].categories.categoryName + '</td><td><span class="badge badge-primary badge-pill">' + thData[i].resesCount  + '</span></td></tr>';
-		    	    	$("tbody").append(table);
-	    			}
-	    			
-	    	    	
-	    		}else if(cateVal == null){	//[全て]だった場合は全件表示
-	    			drawThreads();
-	    			break;
-	    		}
-	    }
+		var keyWord = $('#keyword').val() == '' ? null : $('#keyword').val();
+
+		searchParam = {
+	        url: "searchThreads",
+	        dataType: "json",
+	        type: "get",
+	        contentType: "application/json",
+	        data: {
+	        	category : cateVal,
+	        	searchWord : keyWord
+	      	}
+	  };
+
+		$.ajax(searchParam)
+		.done(function(data,status,jqXHR){
+			thData=data;
+			threadPageParam = 1;
+			pageButtonUpdate();
+			drawThreads();
+			threadClick();
+		 
+		})
+		.fail(function(jqXHR,status,errThrown){
+		    console.error(jqXHR);
+		});
 	}
 	
 	//DB内データの受け取り(スレッド表)
@@ -77,7 +80,6 @@ $(function(){
 
 	$.ajax(thParam)
 	.done(function(data,status,jqXHR){
-//	    console.log(data);
 		thData=data;
 		threadPageParam = 1;
 		pageButtonUpdate();

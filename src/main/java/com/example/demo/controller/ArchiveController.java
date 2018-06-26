@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.model.ThreadsForm;
@@ -83,35 +84,37 @@ public class ArchiveController {
 		}
 		return new Gson().toJson(threads);
 	}
-	/*@RequestMapping("/createThread")
-	public String createThread(CreateThreadForm createThreadForm, Model model) {
-		model.addAttribute("user_name", sessionModel.getUserName());//ユーザーネーム表示
-		return "PEch/archive";
-	}*/
-	
 	
 	@RequestMapping(value = "searchThreads", 
 			consumes = MediaType.APPLICATION_JSON_VALUE, 
 			method = RequestMethod.GET)
 	@ResponseBody
-	public String searchThreads(@RequestBody ThreadsForm form) {
+	public String searchThreads(@RequestParam("searchWord") String searchWord,
+								@RequestParam("category") Integer category) {
+		System.out.println(searchWord);
+		System.out.println(category);
 		List<Threads> threads = new ArrayList<>();
-		if(form.getCategory() != null) {
-		List<Categories> cate = categoriesRepos.findByCategoryName(form.getCategory());
-			threads.addAll(threadsRepos.findByCategories(cate.get(0)));
+		
+		if(category == null && searchWord.isEmpty()) {
+			return getTreads();
 		}
-		if(form.getSerchWord() != null) {
-			threads.addAll(threadsRepos.findByThreadNameContaining(form.getSerchWord()));
+		if(category != null && searchWord.isEmpty()) {
+			Categories cate = categoriesRepos.findById(category).get();
+			threads.addAll(threadsRepos.findByCategories(cate));
+		}
+		if(category == null && !searchWord.isEmpty()) {
+			threads.addAll(threadsRepos.findByThreadNameContaining(searchWord));
 		}
 		
-		for(int i = 0 ; i < threads.size() ; i++) {
-			for(int j = 0 ; j < threads.size() ; j++) {
-				if(threads.get(i).getThreadId() == threads.get(j).getThreadId() && i != j) {
+		if(category != null && !searchWord.isEmpty()) {
+			Categories cate = categoriesRepos.findById(category).get();
+			threads.addAll(threadsRepos.findByThreadNameContaining(searchWord));
+			for(int i = 0; i < threads.size(); i++) {
+				if(threads.get(i).getCategories() != cate) {
 					threads.remove(i);
 				}
 			}
 		}
-		
 		return new Gson().toJson(threads);
 	}
 	

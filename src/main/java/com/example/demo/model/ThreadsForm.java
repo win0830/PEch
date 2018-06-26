@@ -11,7 +11,7 @@ public class ThreadsForm implements Serializable{
 	private Integer page;
 	private Integer threadsCount;
 	private String serchWord;
-	private String category;
+	private Integer category;
 	
 	public Integer getPage() {
 		return page;
@@ -31,10 +31,10 @@ public class ThreadsForm implements Serializable{
 	public void setSerchWord(String serchWord) {
 		this.serchWord = serchWord;
 	}
-	public String getCategory() {
+	public Integer getCategory() {
 		return category;
 	}
-	public void setCategory(String category) {
+	public void setCategory(Integer category) {
 		this.category = category;
 	}
 }
