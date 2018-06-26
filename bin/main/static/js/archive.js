@@ -82,31 +82,8 @@ $(function(){
 		threadPageParam = 1;
 		pageButtonUpdate();
 		drawThreads();
-	  $('.threadId').on('click', function(){
-	  	//console.log($(this).attr('value'));
-	  	console.log($(this).find('form'));
-	  	$(this).find('form').submit();
-	  	//$(this.form).submit();
-	  // 	threadPageParam = {
-	  //       url: "/getThreadInfo",
-	  //       dataType: "json",
-	  //       type: "get",
-	  //       contentType: "application/json",
-	  //       data: {
-	  //       	threadId: $(this).attr('value')
-	  //       }
-	  //   };
-	  //   $.ajax(thParam)
-			// .done(function(data,status,jqXHR){
-			// 	location.href = '/thread';
-			// })
-			// .fail(function(jqXHR,status,errThrown){
-	  //   	console.error("Error:" + status);
-			// });
-	  	
-	  });
-	    
-	    
+		threadClick();
+	 
 	})
 	.fail(function(jqXHR,status,errThrown){
 	    console.error("Error:" + status);
@@ -180,8 +157,10 @@ $(function(){
 	$('.page_change').each(function(i,v){
 		$(v).click(function(){
 			threadPageParam = Number( $(v).val() );
+			window.location.href = '#';
 			pageButtonUpdate();
 			drawThreads();
+			threadClick();
 		});
 	});
 	
@@ -195,14 +174,22 @@ $(function(){
 		}else{
 			$('#prev_page').prop("disabled", false);
 		}
+		
 		$('#now_draw_num').html(DISPLAY_NUM*(threadPageParam-1)+1 );
-		if(Number( $('#next_page').val() )-1 > thData.length / DISPLAY_NUM){
+		
+		if(Number( $('#next_page').val() )-1 > (thData.length-1) / DISPLAY_NUM){
 			$('#next_page').prop("disabled", true);
 			$('#now_draw_num').html($('#now_draw_num').html() + ' ～ ' + thData.length);
 		}else{
 			$('#next_page').prop("disabled", false);
 			$('#now_draw_num').html($('#now_draw_num').html() + ' ～ ' + threadPageParam*DISPLAY_NUM);
 		}
+	}
+	
+	function threadClick(){
+		$('.threadId').on('click', function(){
+				$(this).find('form').submit();
+		});
 	}
 });
 
