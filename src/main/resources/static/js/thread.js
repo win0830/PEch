@@ -57,8 +57,9 @@ $(function(){
 	    
 	  //selectの値を取得
 		$('select').change(function(){
-			var n = $('option:selected').val();
-			if(n == null){
+			
+			var n = $('select').val();
+			if(n=="null"){
 				$('#add_category').show();
 				
 			}else{

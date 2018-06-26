@@ -124,8 +124,8 @@ $(function(){
 		//selectの値を取得
 		$('select:eq(1)').change(function(){
 			
-			var n = $('option:selected').val();
-			if(n == null){
+			var n = $('select:eq(1)').val();
+			if(n=="null"){
 				$('#add_category').show();
 				
 			}else{
