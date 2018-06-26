@@ -123,4 +123,10 @@ public class ArchiveController {
 		List<Categories> categories = categoriesRepos.findAll();
 		return new Gson().toJson(categories);
 	}
+	
+	public void createCategory(String categoryName) {
+		Categories category = new Categories();
+		category.setCategoryName(categoryName);
+		categoriesRepos.save(category);
+	}
 }
