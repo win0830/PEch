@@ -26,6 +26,7 @@ public class ResesForm implements Serializable{
 	public void setIsOpenName(Integer isOpenName) {
 		this.isOpenName = isOpenName;
 	}
-	
-	
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 }

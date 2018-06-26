@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.SessionModel;
@@ -37,21 +38,13 @@ public class ThreadController {
 	@RequestMapping("/thread")
 	public String getTread(ResesForm form, Model model) {
 		model.addAttribute("user_name", sessionModel.getUserName());//ユーザーネーム表示
-		System.out.println(form.getThreadId());
+		Threads threads = threadsRepos.findById(form.getThreadId()).get();
+		model.addAttribute("threads", threads);
 		return "PEch/thread";
 	}
 	
-	@RequestMapping(value = "/getThreadInfo", 
-			consumes = MediaType.APPLICATION_JSON_VALUE, 
-			method = RequestMethod.GET)
-	@ResponseBody
-	public String getThreadInfo() {
-		
-		return new Gson().toJson("");
-	}
-	
 	// レス投稿
-	@RequestMapping(value = "sendMessage", 
+	@RequestMapping(value = "/sendMessage", 
 			consumes = MediaType.APPLICATION_JSON_VALUE, 
 			method = RequestMethod.GET)
 	@ResponseBody
@@ -75,13 +68,14 @@ public class ThreadController {
 			consumes=MediaType.APPLICATION_JSON_VALUE,
 			method = RequestMethod.GET)
     @ResponseBody
-	public String getReses(@RequestBody ResesForm resesForm) {
-		List<Reses> reses = new ArrayList<Reses>();
-		for(Reses res : resesRepos.findAll(new Sort(Sort.Direction.ASC,"postTime"))) {
-			if(res.getThreads().getThreadId() == resesForm.getThreadId()) {
-				reses.add(res);
-			}
-		}
+	public String getReses(@RequestParam("threadId") Integer threadId) {
+		Threads threads = threadsRepos.findById(threadId).get();
+		List<Reses> reses = resesRepos.findByThreadsOrderByPostTimeAsc(threads);
+//		for(Reses res : resesRepos.findAll(new Sort(Sort.Direction.ASC,"postTime"))) {
+//			if(res.getThreads().getThreadId() == threadId) {
+//				reses.add(res);
+//			}
+//		}
 		return new Gson().toJson(reses);
 	}
 }
