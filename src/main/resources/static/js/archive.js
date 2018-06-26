@@ -103,6 +103,7 @@ $(function(){
 		
 		for(var i=0; i < data.length; i++){
 			console.log( data[i].categoryId );
+			
 			if(i==0){
 				//検索の場合はselectedなし
 				$('select:eq(0)').append('<option value="'+ data[i].categoryId +'">'
@@ -123,8 +124,8 @@ $(function(){
 		//selectの値を取得
 		$('select:eq(1)').change(function(){
 			
-			var n = $('option:selected').val();
-			if(n == null){
+			var n = $('select:eq(1)').val();
+			if(n=="null"){
 				$('#add_category').show();
 				
 			}else{
