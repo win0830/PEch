@@ -11,6 +11,7 @@ $(function(){
 	});
 
 	$('#send_message').on('click', send_message);
+	$('.cal').datepicker();
 
 	//DB内データの受け取り 
 	resesParam = {
