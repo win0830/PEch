@@ -84,7 +84,7 @@
           スレ作成
         </div>
           <div class="card-body">
-            <form action="/archive">
+            <form action="/createThread" method="get">
 
               <div class="form-group">
                 <label>カテゴリ&emsp;：</label>&nbsp;
@@ -92,17 +92,17 @@
                 </select>
               </div>
               <!-- keyword -->
-              <div class="form-group">
+              <div id="add_category" class="form-group">
                 <label>新規カテゴリ：</label>&nbsp;
                 <input type="text">
               </div>
 
 
               <div class="form-group">
-                <input type="text" class="form-control" id="" placeholder="スレッド名">
+                <input type="text" name="threadName" class="form-control" id="" placeholder="スレッド名">
               </div>
               <div class="form-group">
-                <textarea class="form-control" id="message" rows="5" placeholder="本文"></textarea>
+                <textarea class="form-control" name="res" id="message" rows="5" placeholder="本文"></textarea>
               </div>
               <button type="submit" class="btn btn-danger">作成</button>
             </form>

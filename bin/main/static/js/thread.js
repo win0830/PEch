@@ -11,6 +11,7 @@ $(function(){
 	});
 
 	$('#send_message').on('click', send_message);
+	$('.cal').datepicker();
 
 	//DB内データの受け取り 
 	resesParam = {
@@ -54,6 +55,17 @@ $(function(){
 	    }
 	    $('select').append('<option value="null">＋追加</option>');
 	    
+	  //selectの値を取得
+		$('select:eq(1)').change(function(){
+			var n = $('option:selected').val();
+			if(n == null){
+				$('#add_category').show();
+				
+			}else{
+				$('#add_category').hide();
+			}
+		});
+	
 	})
 	.fail(function(jqXHR,status,errThrown){
 	    console.error("Error:" + status);
