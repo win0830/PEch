@@ -62,7 +62,7 @@ public class LoginController {
 			}
 		}
 		//�ｿｽ�ｿｽ�ｿｽO�ｿｽC�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽs�ｿｽ�ｿｽ�ｿｽF�ｿｽ�ｿｽ�ｿｽs�ｿｽt�ｿｽ�ｿｽ�ｿｽO�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽﾄて�ｿｽ�ｿｽ[�ｿｽU�ｿｽ[�ｿｽh�ｿｽc�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽZ�ｿｽb�ｿｽg�ｿｽ�ｿｽ�ｿｽﾄ�ｿｽ�ｿｽO�ｿｽC�ｿｽ�ｿｽ�ｿｽ�ｿｽﾊゑｿｽ
-		model.addAttribute("flag", true);
+		model.addAttribute("flag", "ユーザー名またはパスワードが違います。");
 		model.addAttribute("userId", form.getUserId());
 		model.addAttribute("user_name", sessionModel.getUserName());//ユーザーネーム表示
 		return "PEch/login";
@@ -73,6 +73,7 @@ public class LoginController {
 	public String logout(Model m) {
 		sessionModel.setUserName(null);
 		sessionModel.setUserId(null);
+		m.addAttribute("flag", "ログアウトしました。");
 		return "PEch/login";
 	}
 	
