@@ -21,3 +21,8 @@
 	opacity: 0.60;
 	z-index:99999;
 }
+
+
+#add_category{
+	display:none;
+}
