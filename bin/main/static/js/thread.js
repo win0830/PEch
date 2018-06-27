@@ -85,31 +85,6 @@ $(function(){
 
 });
 
-//function send_message(){
-//	sendMessageParam = {
-//		url: "/sendMessage",
-//		dataType: "json",
-//		type: "get",
-//		contentType: "application/json",
-//		data: {
-//	  	isOpenName : $('.form-check-input').prop('checked'),
-//	  	res : $('#msg').val(),
-//	  	//threadId : $('#thread_id').val()
-//	  }
-//	}
-//
-//	$.ajax(sendMessageParam)
-//	.done(function(data,status,jqXHR){
-////	    console.log(data);
-//	  //テーブルに受け取った値を表示
-//	    for(var i = 0 ; i < data.length ; i++){
-//	    	console.log(data);
-//	    }
-//	})
-//	.fail(function(jqXHR,status,errThrown){
-//	    console.error("Error:" + status);
-//	});
-//}
 
 $('#send_message').on('click', send_message);
 
@@ -121,7 +96,7 @@ function send_message(){
 	}else{
 		num = 0;
 	}
-	var text = $('textarea[name="text"]').val();
+	var text = $('#msg').val();
 	var id = Number($('#threadId').text());
 	sendMessageParam = {
 		url: "/sendMessage",
@@ -145,7 +120,7 @@ function send_message(){
 	    }
 	})
 	.fail(function(jqXHR,status,errThrown){
-	    console.error("Error:" + status);
+	    console.error(jqXHR);
 	});
 }
 
