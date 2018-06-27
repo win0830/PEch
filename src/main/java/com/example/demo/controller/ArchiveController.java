@@ -1,6 +1,9 @@
 package com.example.demo.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -119,9 +122,12 @@ public class ArchiveController {
 		if(category != null && !searchWord.isEmpty()) {
 			Categories cate = categoriesRepos.findById(category).get();
 			threads.addAll(threadsRepos.findByThreadNameContaining(searchWord));
-			for(int i = 0; i < threads.size(); i++) {
-				if(threads.get(i).getCategories() != cate) {
+			int size = threads.size();
+			for(int i = 0; i < size; i++) {
+				if(!threads.get(i).getCategories().equals(cate)) {
 					threads.remove(i);
+					i--;
+					size--;
 				}
 			}
 		}
