@@ -53,7 +53,13 @@ public class ArchiveController {
 		Users user = usersRepos.findByUserId( sessionModel.getUserId() );
 		//スレッド作成
 		Threads thread = new Threads();
-		thread.setCategories( createThreadForm.getCategory() );
+		if(createThreadForm.getCategory() != null) {
+			thread.setCategories( createThreadForm.getCategory() );
+		}else {
+			Categories category = createCategory(createThreadForm.getNewCategory());
+			thread.setCategories( category );
+		}
+		
 		thread.setThreadName( createThreadForm.getThreadName() );
 		thread.setUsers( user );
 		thread = threadsRepos.save(thread);
@@ -127,9 +133,9 @@ public class ArchiveController {
 		return new Gson().toJson(categories);
 	}
 	
-	public void createCategory(String categoryName) {
+	public Categories createCategory(String categoryName) {
 		Categories category = new Categories();
 		category.setCategoryName(categoryName);
-		categoriesRepos.save(category);
+		return categoriesRepos.save(category);
 	}
 }

@@ -13,6 +13,16 @@ public class CreateThreadForm implements Serializable{
 	
 	private Categories category;
 	
+	private String newCategory;
+	
+	public String getNewCategory() {
+		return newCategory;
+	}
+
+	public void setNewCategory(String newCategory) {
+		this.newCategory = newCategory;
+	}
+
 	public String getThreadName() {
 		return threadName;
 	}
