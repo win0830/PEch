@@ -11,10 +11,18 @@ public class CreateThreadForm implements Serializable{
 	
 	private Integer isOpenName = 0;
 	
-	private Categories category;
+	private Integer categoryId;
 	
 	private String newCategory;
 	
+	public Integer getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(Integer categoryId) {
+		this.categoryId = categoryId;
+	}
+
 	public String getNewCategory() {
 		return newCategory;
 	}
@@ -47,13 +55,6 @@ public class CreateThreadForm implements Serializable{
 		this.isOpenName = isOpenName;
 	}
 	
-	public Categories getCategory() {
-		return category;
-	}
-	
-	public void setCategory(Categories category) {
-		this.category = category;
-	}
 	
 	
 }

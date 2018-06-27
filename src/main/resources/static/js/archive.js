@@ -119,14 +119,14 @@ $(function(){
 					+ data[i].categoryName  + '</option>');
 			}
 		}
-		$('select:eq(1)').append('<option value="null">＋追加</option>');	//追加
+		$('select:eq(1)').append('<option value="-1">＋追加</option>');	//追加
 		
 		
 		//selectの値を取得
 		$('select:eq(1)').change(function(){
 			
 			var n = $('select:eq(1)').val();
-			if(n=="null"){
+			if(n=="-1"){
 				$('#add_category').show();
 				
 			}else{
