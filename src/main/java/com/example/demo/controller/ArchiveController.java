@@ -53,11 +53,15 @@ public class ArchiveController {
 		Users user = usersRepos.findByUserId( sessionModel.getUserId() );
 		//スレッド作成
 		Threads thread = new Threads();
-		if(createThreadForm.getCategory() != null) {
-			thread.setCategories( createThreadForm.getCategory() );
-		}else {
-			Categories category = createCategory(createThreadForm.getNewCategory());
+		if(categoriesRepos.findByCategoryNameIgnoreCase( createThreadForm.getNewCategory() ) != null) {
+			return getArchive(model);
+		}
+		if(createThreadForm.getCategoryId() == -1) {
+			Categories category = createCategory( createThreadForm.getNewCategory() );
 			thread.setCategories( category );
+			
+		}else {
+			thread.setCategories( categoriesRepos.findById( createThreadForm.getCategoryId() ).get() );
 		}
 		
 		thread.setThreadName( createThreadForm.getThreadName() );
