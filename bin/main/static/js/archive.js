@@ -6,6 +6,12 @@ const DISPLAY_NUM = 10;
 var thData;
 
 $(function(){
+
+	$('#test').on('click', function(){
+		console.log($('#category').val());
+		console.log($('#category').html());
+		return false;
+	});
 	
 	/* 
 	* header
