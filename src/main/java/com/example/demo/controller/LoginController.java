@@ -49,7 +49,7 @@ public class LoginController {
 	
 	
 	//�ｿｽ�ｿｽ�ｿｽO�ｿｽC�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽﾄス�ｿｽ�ｿｽ�ｿｽb�ｿｽh�ｿｽ齬暦ｿｽy�ｿｽ[�ｿｽW�ｿｽ�ｿｽ
-	@RequestMapping(value="login")
+	@RequestMapping(value="/login")
 	public String login(ModelMap model, LoginForm form ,HttpServletRequest req) {
 		if(usersRepos.findByUserId(form.getUserId())!=null) { //�ｿｽ�ｿｽ�ｿｽ[�ｿｽU�ｿｽ[�ｿｽh�ｿｽc�ｿｽi�ｿｽ�ｿｽ�ｿｽ[�ｿｽ}�ｿｽ�ｿｽ�ｿｽj�ｿｽﾌ茨ｿｽv�ｿｽ�ｿｽ�ｿｽ驛��ｿｽ[�ｿｽU�ｿｽ[�ｿｽﾌ鯉ｿｽ�ｿｽ�ｿｽ
 			if(usersRepos.findByUserId(form.getUserId()).getPassword()//�ｿｽ�ｿｽv�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ[�ｿｽU�ｿｽ[�ｿｽﾆパ�ｿｽX�ｿｽ�ｿｽ�ｿｽ[�ｿｽh�ｿｽ�ｿｽ�ｿｽ�ｿｽv�ｿｽ�ｿｽ�ｿｽ驍ｩ�ｿｽﾇゑｿｽ�ｿｽ�ｿｽ
@@ -69,7 +69,7 @@ public class LoginController {
 	}
 	
 	//�ｿｽ�ｿｽ�ｿｽO�ｿｽA�ｿｽE�ｿｽg�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽ�ｿｽﾄ�ｿｽ�ｿｽO�ｿｽC�ｿｽ�ｿｽ�ｿｽy�ｿｽ[�ｿｽW�ｿｽ�ｿｽ
-	@RequestMapping("logout")
+	@RequestMapping("/logout")
 	public String logout(Model m) {
 		sessionModel.setUserName(null);
 		sessionModel.setUserId(null);

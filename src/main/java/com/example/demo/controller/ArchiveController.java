@@ -47,6 +47,9 @@ public class ArchiveController {
 	// show page
 	@RequestMapping("/archive")
 	public String getArchive(Model model) {
+		if(sessionModel.getUserId()==null) {
+			return "redirect:/login";
+		}
 		model.addAttribute("user_name", sessionModel.getUserName());//ユーザーネーム表示
 		return "PEch/archive";
 	}
