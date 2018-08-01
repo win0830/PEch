@@ -15,10 +15,7 @@ apply plugin: 'eclipse-wtp'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'war'
-war {
-		enabled = true
-		archiveName 'PEch.war'
-	}
+
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
@@ -40,5 +37,4 @@ dependencies {
 	runtime('mysql:mysql-connector-java')
 	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
-	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
 }
