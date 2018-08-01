@@ -38,7 +38,7 @@ public class ThreadController {
 	@RequestMapping("/thread")
 	public String getTread(ResesForm form, Model model) {
 		if(sessionModel.getUserId()==null) {
-			return "redirect:/login";
+			return "redirect:/";
 		}
 		model.addAttribute("user_name", sessionModel.getUserName());//ユーザーネーム表示
 		Threads threads = threadsRepos.findById(form.getThreadId()).get();
