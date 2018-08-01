@@ -146,7 +146,7 @@ $(function(){
 	    for(var i = drawNum-DISPLAY_NUM ; i < drawNum; i++){
 	    	if(i >= thData.length) break;	//スレッド件数を超える場合、強制的に抜ける
 	    	var table = '<tr class="threadId">'
-	    		+ '<td><form action="/thread" method="get"><input type="text" name="threadId" style="display:none;" value="' + thData[i].threadId + '"></form>'
+	    		+ '<td><form action="/thread" method="get" target="_blank"><input type="text" name="threadId" style="display:none;" value="' + thData[i].threadId + '"></form>'
 	    		+ thData[i].createdDate.date.year +'/'+ thData[i].createdDate.date.month +'/'+ thData[i].createdDate.date.day +' '+ thData[i].createdDate.time.hour +':'+ thData[i].createdDate.time.minute + ':'+ thData[i].createdDate.time.second 
 	    		+ '</td><td>'
 					+ thData[i].threadName + '</td><td>'

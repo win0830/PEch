@@ -86,6 +86,7 @@ function send_message(){
 	$.ajax(sendMessageParam)
 	.done(function(data,status,jqXHR){
 		$('.reses_list').empty();
+		$('#msg').val('');
 		getReses();
 	})
 	.fail(function(jqXHR,status,errThrown){

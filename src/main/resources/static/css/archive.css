@@ -26,3 +26,7 @@
 #add_category{
 	display:none;
 }
+
+tbody{
+	cursor: pointer;
+}
