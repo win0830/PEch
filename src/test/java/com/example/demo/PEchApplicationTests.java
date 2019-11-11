@@ -12,5 +12,6 @@ public class PEchApplicationTests {
 	@Test
 	public void contextLoads() {
 	}
+	/*ブランチテスト*/
 
 }
