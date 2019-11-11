@@ -13,5 +13,9 @@ public class PEchApplicationTests {
 	public void contextLoads() {
 	}
 	/*ブランチテスト　複数のブランチをマスターにマージ */
+<<<<<<< HEAD
 
+=======
+	/*追記*/
+>>>>>>> refs/heads/test
 }
