@@ -12,6 +12,6 @@ public class PEchApplicationTests {
 	@Test
 	public void contextLoads() {
 	}
-	/*ブランチテスト　複数のブランチをマスターにマージ */
+	/*ブランチテスト　複数のブランチをマスターにマージ かなしい */
 	/*追記*/
 }
